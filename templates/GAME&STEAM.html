@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>GAME&STEAM</title>
+		<link type="text/css" rel="stylesheet" href="styling.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="funcs.js"></script>
+	</head>
+
+	
+	<header>
+  		<h1>Movimiento STEAM <br> <span class="anim"></span></h1>
+  		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+  		  <polygon class="svg--sm" fill=#339501 points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
+  		  <polygon class="svg--lg" fill=#339501 points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
+  		</svg>
+	</header>
+
+<section>
+
+	<body>
+
+<div class="row">	
+
+	<div class="column lft">
+    	<xli>
+
+    	<p class="boxpadding">
+    		<div class="boxed0">
+	  		<p> Presiona los botones numerados para visualizar los minijuegos </p>
+	  		</div>
+	  	</p>
+
+
+	  		<p class="boxed webimg">
+	  		<img style= "display:none"; id="image" src="image" width="500" height="300" />
+	  		</p>
+
+
+
+	  		<p class="firstbuttons">
+		 		<button id="B1" onclick="showPicture()"> <b> 1 </b> </button>
+				 <b>------------</b>
+		 		<button id="B2" onclick="showPicture2()"> <b> 2 </b> </button>
+		 		<b>------------</b>
+		 		<button id="B3" onclick="showPicture3()"> <b> 3 </b> </button>
+			</p>
+
+			<br>
+
+	  		
+	  		
+	  		<h3 class="header"> ÁREAS QUE PODRÁS EXPERIMENTAR</h3>
+
+	  			<ul>
+	  				<p class="gtitle">
+	  				<li><b>Física</b></li>
+	  				<li><b>Química</b></li>
+	  				<li><b>Computación</b></li>
+	  				</p>
+	  			</ul>
+	  		
+		</xli>
+  	</div>
+
+
+  	<div class="column middl">
+
+  			<xli2>
+
+    		<h3 class="gtitle"><b><u>GAME & STEAM</u></b></h3>
+    			<p class="stars">
+    				<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+				</p>
+
+    			 <p class="button1">
+    			 	<button class="jugar" onclick="openForm()"> <b><u>JUGAR</u></b></button>
+    			 	<button class="calificar"> CALIFICAR </button>
+	  			</p>
+	  		</xli2>	
+
+
+	  		<div class="loginPopup">
+      <div class="formPopup" id="popupForm">
+        <form action="https://diegomanzanarez.github.io/" class="formContainer">
+
+          <h2 class="formheader">Antes de comenzar, por favor introduce tu nombre, edad y género</h2>
+
+          <label for="Nombre">
+            <strong>Nombre</strong>
+          </label>
+          <input type="text" id="Nombre" placeholder="Nombre" name="Nombre" required>
+
+          <label for="Edad">
+            <strong>Edad</strong>
+          </label>
+          <input type="text" id="Edad" placeholder="Edad en años" name="Edad" required>
+
+          <label for="Genero">
+            <strong>Género</strong>
+          </label>
+          <input type="text" id="Genero" placeholder="Femenino o masculino" name="Genero" required>
+
+          <button type="submit" class="btn">Aceptar e ir a jugar</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Cancelar</button>
+
+        </form>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="column rght">
+    	<xli2>
+	  		<h3 class="hthree">Misión STEAM</h3>
+	  			<p>Se propone como un interlocutor y concentrador de esfuerzos para integrar y potenciar el impacto del Ecosistema STEAM en el país, sumando a su causa a la iniciativa privada, cámaras sectoriales, OSCs, gobierno, academia, comunidad emprendedora y organismos no gubernamentales nacionales e internacionales.</p>
+
+
+	  		<h3 class="hthree">Impacto Social</h3>
+	  			<p>En Movimiento STEAM desde el año 2017 hemos impactado a más de 20 millones de personas, entre las que se encuentran niñas, niños y adolescentes, madres y padres de familia, docentes y jóvenes de todo el país y la región, impulsando la Educación STEAM a través de nuestras diferentes iniciativas sociales y programas.</p>
+
+	  		<br>
+
+	  		<!--<p class="padd">-->
+	  		<img src="Assist.png" alt="Assist" width="450" height="265">
+
+
+	  				<div class="stats">
+		 <button class="bstats" onclick="location.href='https://diegomanzanarez.github.io/Estadisticas.html'"> <span><b> Estadísticas </b></span></button> 
+		</div>
+
+	  	</xli2>
+  	</div>
+
+</div>
+
+
+
+		<p class="last">
+		 <button id="I1" onclick="location.href='https://movimientosteam.org/'"> </button>
+		 <button id="I2" onclick="location.href='https://www.facebook.com/MovimientoSTEAM/'"> </button>
+		 <button id="I3" onclick="location.href='https://twitter.com/MovimientoSTEAM?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'"> </button>
+		</p>
+
+		<hr size="5" width="100%" color="black">
+
+		<footer>
+        <div class="downfoo">
+		<b>Autores:</b> Diego Enrique Manzanarez Velázquez    |   Santiago Orozco Quintero    |   Luis Enrique Bojórquez Almazán   |   Jesus Javier Hernández Delgado
+        </div>
+        <nav>
+            <a class="links" href="https://movimientosteam.org/historia-2/">Historia Movimiento STEAM</a>
+        </nav>
+	</footer>
+	</body>
+</section>
+</html>
