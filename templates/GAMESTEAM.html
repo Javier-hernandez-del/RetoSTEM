@@ -4,9 +4,11 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>GAME&STEAM</title>
-		<link type="text/css" rel="stylesheet" href="styling.css">
+        {% load static %}
+		<link href="{% static 'styling.css'  %}" rel="stylesheet" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script type="text/javascript" src="funcs.js"></script>
+        <link href="{% static 'styling.css'  %}" rel="stylesheet" />
+		<script type="text/javascript" src="{% static 'funcs.js'  %}"></script>
 	</head>
 
 	
@@ -132,7 +134,7 @@
 
 
 	  				<div class="stats">
-		 <button class="bstats" onclick="location.href='https://diegomanzanarez.github.io/Estadisticas.html'"> <span><b> Estadísticas </b></span></button> 
+		 <button class="bstats" onclick="location.href='http://127.0.0.1:8000/Estadisticas'"> <span><b> Estadísticas </b></span></button> 
 		</div>
 
 	  	</xli2>

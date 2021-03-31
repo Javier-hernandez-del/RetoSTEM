@@ -5,9 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Estadisticas</title>
 
-		<link type="text/css" rel="stylesheet" href="style.css">
+        {% load static %}
+		<link href="{% static 'style.css'  %}" rel="stylesheet" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script type="text/javascript" src="function.js"></script>
+        <script type="text/javascript" src="{% static 'function.js'  %}"></script>
 
 <!--  START CURVE CHART USER  -->
 
@@ -389,7 +390,7 @@
 	
 	<header class ="main">
 		<div class="stats">
-		 <button class="bstats" onclick="location.href='https://diegomanzanarez.github.io/GAME&STEAM.html'"><span> <b> GAME & STEAM </b> </span> </button> 
+		 <button class="bstats" onclick="location.href='http://127.0.0.1:8000/GAMESTEAM'"><span> <b> GAME & STEAM </b> </span> </button> 
 		</div>
   		<h1>Estadísticas GAME & STEAM</h1>
 

@@ -8,6 +8,14 @@ def index(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
     return render(request,'index.html')
 
+def GAMESTEAM(request):
+    #return HttpResponse('<h1> Saludos desde Django</h1>')
+    return render(request,'GAMESTEAM.html')
+
+def Estadisticas(request):
+    #return HttpResponse('<h1> Saludos desde Django</h1>')
+    return render(request,'Estadisticas.html')
+
 def proceso(request):
     nombre = request.POST['nombre']
     nombre = nombre.upper()
