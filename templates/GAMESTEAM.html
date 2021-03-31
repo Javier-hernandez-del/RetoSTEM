@@ -37,7 +37,8 @@
 
 
 	  		<p class="boxed webimg">
-	  		<img style= "display:none"; id="image" src="image" width="500" height="300" />
+            {% load static %}
+	  		<img style= "display:none"; id="image" src="{% static 'IMG1.png' %}" width="500" height="300" />
 	  		</p>
 
 
@@ -90,8 +91,8 @@
 
 	  		<div class="loginPopup">
       <div class="formPopup" id="popupForm">
-        <form action="https://diegomanzanarez.github.io/" class="formContainer">
-
+        <form action="https://diegomanzanarez.github.io/" class="formContainer" method="POST">
+            {% csrf_token %}
           <h2 class="formheader">Antes de comenzar, por favor introduce tu nombre, edad y género</h2>
 
           <label for="Nombre">
@@ -130,7 +131,9 @@
 	  		<br>
 
 	  		<!--<p class="padd">-->
-	  		<img src="Assist.png" alt="Assist" width="450" height="265">
+            {% load static %}
+            <img src="{% static 'Assist.png' %}" alt="Assist" width="450" height="265" />
+	  		<!--<img src="Assist.png" alt="Assist" width="450" height="265">-->
 
 
 	  				<div class="stats">

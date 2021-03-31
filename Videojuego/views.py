@@ -17,9 +17,9 @@ def Estadisticas(request):
     return render(request,'Estadisticas.html')
 
 def proceso(request):
-    nombre = request.POST['nombre']
+    nombre = request.POST['Nombre']
     nombre = nombre.upper()
-    return render(request,'proceso.html',{'name':nombre})
+    return render(request,'GAMESTEAM.html',{'Name':nombre})
 
 def datos(request):
     jugadores = Reto.objects.all() #select * from Reto;
