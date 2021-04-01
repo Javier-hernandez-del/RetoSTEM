@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from . models import Reto
+from . models import MinutosJugados
+from . models import Edades
 
 # Create your views here.
 
@@ -22,5 +23,9 @@ def proceso(request):
     return render(request,'GAMESTEAM.html',{'Name':nombre})
 
 def datos(request):
-    jugadores = Reto.objects.all() #select * from Reto;
+    jugadores = MinutosJugados.objects.all() #select * from Reto;
+    return render(request, 'datos.html',{'lista_jugadores':jugadores})
+
+def datos2(request):
+    jugadores = Edades.objects.all() #select * from Reto;
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
