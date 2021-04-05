@@ -11,4 +11,5 @@ urlpatterns = [
     path('GAMESTEAM',views.GAMESTEAM, name = 'GAMESTEAM'),
     path('Estadisticas',views.Estadisticas, name = 'Estadisticas'),
     path('datos',views.datos, name = 'datos'),
+    #path('datos2',views.datos2, name = 'datos2'),
 ]

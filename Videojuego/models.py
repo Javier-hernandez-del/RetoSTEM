@@ -2,9 +2,15 @@ from django.db import models
 
 # Create your models here.
 
-class MinutosJugados(models.Model):
+class Usuarios(models.Model):
     nombre = models.CharField(max_length=30)
-    minutos_jugados = models.IntegerField()
+    edad = models.IntegerField()
+    genero = models.CharField(max_length=10)
+    minutos_jugados = models.FloatField()
+    ultimo_inicio= models.DateField()
+    
+
+
 
 class Edades(models.Model):
     nombre = models.CharField(max_length=30)
