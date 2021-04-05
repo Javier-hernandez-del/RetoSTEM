@@ -420,8 +420,8 @@
 
               <div class="loginPopup">
       <div class="formPopup" id="popupForm">
-        <form action="https://www.google.com.mx/?hl=es-419" class="formContainer">
-
+        <form action="https://www.google.com.mx/?hl=es-419" class="formContainer" method="POST">
+            {% csrf_token %}
           <h2 class="formheader">Para visualizar tus datos de juego introduce tu nombre, edad y género</h2>
 
           <label for="Nombre">

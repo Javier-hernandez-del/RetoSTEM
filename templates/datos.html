@@ -7,8 +7,14 @@
        <h1>Esta es la lista de jugadores registrados</h1>
        <ul>
            {% for j in lista_jugadores %}
-           <li>{{j.nombre}} ha jugado {{j.minutos_jugados}}</li>
+           <li>{{j.nombre}} de género {{j.genero}} tiene {{j.edad}} años y ha jugado {{j.minutos_jugados}} minutos. Su último inicio de sesión fue en {{j.ultimo_inicio}}</li>
            {% endfor %}
        </ul>
+
+       <ul>
+        {% for j in lista_jugadores %}
+        <li>{{j.nombre}} tiene {{j.edad}} años</li>
+        {% endfor %}
+    </ul>
     </body>
 </html>
