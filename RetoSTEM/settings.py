@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'RetoSTEM.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'steamdb',
-        'USER': 'DiegoManzanarez',
-        'PASSWORD': 'STEAMDBpsw07',
+        'NAME': 'STEAM',
+        'USER': 'RETOSTEAM',
+        'PASSWORD': 'miracle02615',
         'HOST': 'localhost',
         'PORT': '5432',
     }
