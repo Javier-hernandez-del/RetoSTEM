@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'steam',
-        'USER': 'RETOSTEAM',
+        'USER': 'retosteam',
         'PASSWORD': 'miracle02615',
         'HOST': 'localhost',
         'PORT': '5432',
