@@ -27,7 +27,7 @@ function myFunction3() {
 
 
 function showPicture() {
-  var sourceOfPicture = "RetoSTEM/static/funcs.js/IM1.png";
+  var sourceOfPicture = "RetoSTEM/static/IM1.png";
   var img = document.getElementById('image')
   img.src = sourceOfPicture.replace('30x30', '30x30');
   img.style.display = "block";
