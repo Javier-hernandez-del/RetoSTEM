@@ -34,7 +34,7 @@ function showPicture() {
 } 
 
 function showPicture2() {
-  var sourceOfPicture = "static/IM2.png";
+  var sourceOfPicture = "/static/IM2.png";
   var img = document.getElementById('image')
   img.src = sourceOfPicture.replace('30x30', '30x30');
   img.style.display = "block";
