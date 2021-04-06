@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'STEAMDB',
         'USER': 'DiegoManzanarez',
-        'PASSWORD': 'bonafonT2420',
+        'PASSWORD': 'STEAMDBpsw07',
         'HOST': 'localhost',
         'PORT': '5432',
     }
