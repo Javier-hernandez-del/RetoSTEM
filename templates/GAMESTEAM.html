@@ -36,20 +36,54 @@
 	  	</p>
 
 
-	  		<p class="boxed webimg">
-            {% load static %}
-	  		<img style= "display:none"; id="image" src="{% static image %}" width="500" height="300" />
-	  		</p>
+          {% load static %}
+
+
+          <p class="boxed webimg">
+    
+            <img style= "display:none"; id= image src="{% static 'IM1.png' %}" width="500" height="300" />
+            </p>
+
+            <script type="text/javascript">
+                    function showPicture1_1() {
+                    var sourceOfPicture = "static/IM1.png";
+                    var img = document.getElementById('image')
+                    img.src = sourceOfPicture.replace('30x30', '30x30');
+                    img.style.display = "block";
+                    } 
+            </script>
+
+            <script type="text/javascript">
+                function showPicture1_2() {
+                var sourceOfPicture = "static/IM2.png";
+                var img = document.getElementById('image')
+                img.src = sourceOfPicture.replace('30x30', '30x30');
+                img.style.display = "block";
+                } 
+            </script>
+
+            <script type="text/javascript">
+                function showPicture1_3() {
+                var sourceOfPicture = "static/IM3.png";
+                var img = document.getElementById('image')
+                img.src = sourceOfPicture.replace('30x30', '30x30');
+                img.style.display = "block";
+                } 
+            </script>
+
+
 
 
 
 	  		<p class="firstbuttons">
-		 		<button id="B1" onclick="showPicture()"> <b> 1 </b> </button>
+
+		 		<button id="B1" onclick="showPicture1_1()"> <b> 1 </b> </button>
 				 <b>------------</b>
-		 		<button id="B2" onclick="showPicture2()"> <b> 2 </b> </button>
+		 		<button id="B2" onclick="showPicture1_2()"> <b> 2 </b> </button>
 		 		<b>------------</b>
-		 		<button id="B3" onclick="showPicture3()"> <b> 3 </b> </button>
+		 		<button id="B3" onclick="showPicture1_3()"> <b> 3 </b> </button>
 			</p>
+
 
 			<br>
 
