@@ -33,4 +33,5 @@ def datos(request):
 
   @csrf_exempt
   def unity(request):
-      
+      retorno = {"nombreUsuario":"Juan", "score":"5500"}
+      return JsonResponse(retorno)
