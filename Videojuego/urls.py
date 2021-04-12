@@ -12,5 +12,6 @@ urlpatterns = [
     path('Estadisticas',views.Estadisticas, name = 'Estadisticas'),
     path('datos',views.datos, name = 'datos'),
     path('unity',views.unity, name = 'unity'),
+    path('buscaJugadorBody',views.buscaJugadorBody, name = 'buscaJugadorBody'),
     #path('datos2',views.datos2, name = 'datos2'),
 ]
