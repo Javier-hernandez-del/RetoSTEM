@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from . models import Usuarios
 from . models import Edades
 
@@ -29,3 +30,7 @@ def datos(request):
 #def datos2(request):
  #   jugadores2 = Edades.objects.all() #select * from Reto;
   #  return render(request, 'datos.html',{'lista2_jugadores':jugadores2})
+
+  @csrf_exempt
+  def unity(request):
+      
