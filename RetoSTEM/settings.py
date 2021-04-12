@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'steamdb',
-        'USER': 'DiegoManzanarez',
-        'PASSWORD': 'STEAMBDpsw07',
+        'USER': 'diegomanzanarez',
+        'PASSWORD': 'STEAMDBpsw07',
         'HOST': 'localhost',
         'PORT': '5432',
     }
