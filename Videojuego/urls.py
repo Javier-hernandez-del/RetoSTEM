@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 """urlpatterns = [
     path('',views.index, name = 'index'),
@@ -14,4 +14,8 @@ urlpatterns = [
     path('unity',views.unity, name = 'unity'),
     path('buscaJugadorBody',views.buscaJugadorBody, name = 'buscaJugadorBody'),
     path('ejemploSQL', views.ejemploSQL, name='ejemploSQL'),
+]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
