@@ -32,9 +32,13 @@ def datos(request):
     jugadores = Usuarios.objects.all() #select * from Reto;
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
 
-#def datos2(request):
- #   jugadores2 = Edades.objects.all() #select * from Reto;
-  #  return render(request, 'datos.html',{'lista2_jugadores':jugadores2})
+@login_required
+def score(request):
+    usuario = request.user
+    resultados = Usuarios.objects.filter(nombre=usuario)
+    nombre = resultados[0].nombre
+    score = resultados[0].minutos_jugados
+    return render(request, 'score.html', {"nombreUsuario":nombre,"score":score})
 
 @csrf_exempt
 def unity(request):
