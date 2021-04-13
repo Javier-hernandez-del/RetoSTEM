@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from json import loads
 from . models import Usuarios
 from . models import Edades
@@ -26,6 +27,7 @@ def proceso(request):
     nombre = nombre.upper()
     return render(request,'GAMESTEAM.html',{'Name':nombre})
 
+@login_required
 def datos(request):
     jugadores = Usuarios.objects.all() #select * from Reto;
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
