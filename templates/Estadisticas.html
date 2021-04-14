@@ -384,9 +384,10 @@
   <!--  END TIMELINE2  -->
 
 
-  {% if user.is_authenticated%}
-  <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+  
 	</head>
+
+
 
 	
 	<header class ="main">
@@ -405,6 +406,9 @@
   <br>
 
   <header class ="user">
+
+
+  
     <h1 class="usertitle">¡<b>Hola {{user.get_username}}</b>, estas son tus estadísticas de GAME & STEAM!</h1>
   </header>
 
@@ -417,8 +421,10 @@
 	  <div class="column1">
 
 	  	<h2 class="weird"><u>Tus datos generales</u></h2>
-      <p class="visuals"><em>* Si no puedes visualizar tus datos, por favor presiona aquí, 
-        <a onclick="openForm()"><b><u>obtener datos</u></b></a></em></p>
+      <p class="visuals"><em>* Si quieres cerrar sesión por favor presiona aquí. </em>
+        {% if user.is_authenticated%}
+        <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+        <!-- <a onclick="openForm()"><b><u>obtener datos</u></b></a></em></p> -->
 
 
               <div class="loginPopup">
@@ -452,15 +458,15 @@
 
 	  	
           <hr size=8 width="100%" color="black">
-        <h4> Usuario: {{nombreUsuario}}</h4>
+       <h4> Usuario: <b style= "color: burlywood;">{{nombreUsuario}}</b> </h4> 
         <hr size=8 width="100%" color="black">
-        <h4> Edad: {{edad}}</h4>
+        <h4> Edad: <b style= "color: burlywood;">{{edad}}</b> </h4> 
         <hr size=8 width="100%" color="black">
-        <h4> Género: {{genero}}</h4>
+        <h4> Género: <b style= "color: burlywood;">{{genero}}</b> </h4> 
         <hr size=8 width="100%" color="black">
-        <h4> Último inicio de sesión: {{ultimo_inicio}}</h4>
+        <h4> Último inicio de sesión: <b style= "color: burlywood;">{{ultimo_inicio}}</b> </h4> 
         <hr size=8 width="100%" color="black">
-        <h4> Carreras que te podrían gustar: </h4>
+        <h4> Carreras que te podrían gustar: <b style= "color: burlywood;">{{carreras}}</b> </h4>   </h4>
 
 	  </div>
 

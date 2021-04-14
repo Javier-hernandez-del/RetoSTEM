@@ -291,6 +291,16 @@ header {
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
+
+  .astats{
+    background: crimson;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 30px;
+  }
+  
   
   
   #I1{

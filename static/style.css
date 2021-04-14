@@ -75,6 +75,16 @@ body{
   padding-left: 20px;
 }
 
+.astats{
+  background: crimson;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 30px;
+}
+
+
 .bstats{
   margin-top: 20px;
   background-image: linear-gradient(to bottom, yellow, orange);
@@ -210,6 +220,14 @@ body{
 }
 
 .links{
+  border-style:outset;
+  border-width: 10px;
+  width: 100px;
+  text-align: center;
+  background-color: #00FFF0;
+}
+
+.linkss{
   border-style:outset;
   border-width: 5px;
   width: 100px;
