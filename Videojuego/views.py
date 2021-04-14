@@ -39,7 +39,10 @@ def Estadisticas(request):
     nombre = resultados[0].nombre
     score = resultados[0].minutos_jugados
     edad = resultados[0].edad
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad})
+    genero = resultados[0].genero
+    ultimo_inicio = resultados[0].ultimo_inicio
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad, "genero":genero, "ultimo_inicio":ultimo_inicio})
+
 
 """@login_required
 def edad(request):
@@ -51,20 +54,6 @@ def edad(request):
 """
 
 
-"""def score(request):
-    usuario = request.user
-    resultados = Usuarios.objects.filter(nombre=usuario)
-    nombre = resultados[0].nombre
-    score = resultados[0].minutos_jugados
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score})
-
-def edad(request):
-    usuario = request.user
-    resultados = Usuarios.objects.filter(nombre=usuario)
-    nombre = resultados[0].nombre
-    edad = resultados[0].edad
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad})
-"""
 
 @csrf_exempt
 def unity(request):
