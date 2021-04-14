@@ -125,7 +125,47 @@
 
 	  		<div class="loginPopup">
       <div class="formPopup" id="popupForm">
-        <form action="https://diegomanzanarez.github.io/" class="formContainer" method="POST">
+
+		<!-- -->
+		{% block content %}
+
+		{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% else %}
+    <p>Para visualizar la información es necesario llevar a cabo la identificación</p>
+  {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}" class = "formContainer">
+  {% csrf_token %}
+  <h2 class="formheader">Antes de comenzar, por favor inicia sesión</h2>
+  <table>
+    <tr>
+      <td>User</td>
+      <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+      <td>Pass</td>
+	  <td>{{ form.username.label_tag }}</td>
+      <td>{{ form.password }}</td>
+    </tr>
+  </table>
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endblock %}
+
+		<!-- -->
+
+
+      <!-- <form action="https://diegomanzanarez.github.io/" class="formContainer">
             {% csrf_token %}
           <h2 class="formheader">Antes de comenzar, por favor introduce tu nombre, edad y género</h2>
 
@@ -147,7 +187,7 @@
           <button type="submit" class="btn">Aceptar e ir a jugar</button>
           <button type="button" class="btn cancel" onclick="closeForm()">Cancelar</button>
 
-        </form>
+        </form>-->
       </div>
     </div>
 
@@ -171,9 +211,9 @@
 
 
 	  				<div class="stats">
-		 <button class="bstats" onclick="location.href='http://13.65.45.197:8000/Estadisticas'"> <span><b> Estadísticas </b></span></button> 
+		 <!--<button class="bstats" onclick="location.href='http://13.65.45.197:8000/Estadisticas'"> <span><b> Estadísticas </b></span></button> -->
 		</div>
-
+		<button class="bstats" onclick="location.href='http://127.0.0.1:8000/Estadisticas'"> <span><b> Estadísticas </b></span></button>
 	  	</xli2>
   	</div>
 

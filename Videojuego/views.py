@@ -33,12 +33,38 @@ def datos(request):
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
 
 @login_required
-def score(request):
+def Estadisticas(request):
     usuario = request.user
     resultados = Usuarios.objects.filter(nombre=usuario)
     nombre = resultados[0].nombre
     score = resultados[0].minutos_jugados
-    return render(request, 'score.html', {"nombreUsuario":nombre,"score":score})
+    edad = resultados[0].edad
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad})
+
+"""@login_required
+def edad(request):
+    usuario = request.user
+    resultados = Usuarios.objects.filter(nombre=usuario)
+    nombre = resultados[0].nombre
+    edad = resultados[0].edad
+    return render(request, 'score.html', {"nombreUsuario":nombre,"edad":edad})
+"""
+
+
+"""def score(request):
+    usuario = request.user
+    resultados = Usuarios.objects.filter(nombre=usuario)
+    nombre = resultados[0].nombre
+    score = resultados[0].minutos_jugados
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score})
+
+def edad(request):
+    usuario = request.user
+    resultados = Usuarios.objects.filter(nombre=usuario)
+    nombre = resultados[0].nombre
+    edad = resultados[0].edad
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad})
+"""
 
 @csrf_exempt
 def unity(request):
@@ -46,6 +72,7 @@ def unity(request):
       score = "1234"
       retorno = {"nombreUsuario":nombre, "score":score}
       return JsonResponse(retorno)
+
 
 @csrf_exempt
 def buscaJugadorBody(request):

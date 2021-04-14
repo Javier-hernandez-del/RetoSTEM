@@ -384,7 +384,8 @@
   <!--  END TIMELINE2  -->
 
 
-
+  {% if user.is_authenticated%}
+  <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
 	</head>
 
 	
@@ -399,10 +400,12 @@
 
 
 
+
+ 
   <br>
 
   <header class ="user">
-    <h1 class="usertitle">Estadísticas por usuario</h1>
+    <h1 class="usertitle">¡<b>Hola {{user.get_username}}</b>, estas son tus estadísticas de GAME & STEAM!</h1>
   </header>
 
 <section>
@@ -449,9 +452,9 @@
 
 	  	
           <hr size=8 width="100%" color="black">
-        <h4> Usuario: </h4>
+        <h4> Usuario: {{nombreUsuario}}</h4>
         <hr size=8 width="100%" color="black">
-        <h4> Edad: </h4>
+        <h4> Edad: {{edad}}</h4>
         <hr size=8 width="100%" color="black">
         <h4> Género: </h4>
         <hr size=8 width="100%" color="black">
@@ -630,5 +633,9 @@
 	</body>
 
 </section>
+
+{%else%}
+<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+{%endif%}
 
 </html>

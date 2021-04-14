@@ -14,9 +14,11 @@ urlpatterns = [
     path('unity',views.unity, name = 'unity'),
     path('buscaJugadorBody',views.buscaJugadorBody, name = 'buscaJugadorBody'),
     path('ejemploSQL', views.ejemploSQL, name='ejemploSQL'),
-    path('score',views.score, name = 'score'),
+    #path('score',views.score, name = 'score'),
 ]
 
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
+    #path('GAMESTEAM/', include('django.contrib.auth.urls')),
 ]
+

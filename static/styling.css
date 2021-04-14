@@ -51,6 +51,10 @@ body{
   box-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 
 
 .column {
@@ -321,6 +325,10 @@ button:active {
 
 .boxpadding{
 	padding-bottom: 1px;
+}
+
+.log{
+  padding-top: 50%;
 }
 
 .boxed0{
