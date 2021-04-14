@@ -95,14 +95,14 @@ header {
       position: relative;
       margin: auto;
       width:50%;
-      background-image: linear-gradient(to bottom, pink, yellow);
+      background-image: linear-gradient(to bottom, pink, orange);
       border: 10px solid;
       border-image-source: linear-gradient(45deg, red, purple);
         border-image-slice: 1;
   }
 
-  ul .logul{
-      background-image: linear-gradient(to left, pink, yellow);
+.logul{
+      background-image: linear-gradient(to bottom, orange, pink);
 
   }
   
