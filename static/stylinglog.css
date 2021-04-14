@@ -426,7 +426,7 @@ header {
   }
 
   input[type=submit] {
-    width: 66%;
+    width: 68%;
     background-image: linear-gradient(to bottom, red , purple);
     color: white;
     padding: 14px 20px;
