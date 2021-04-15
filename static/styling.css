@@ -139,7 +139,7 @@ p{
 	border-width: 3px;
 	border-color: black;
 	border-radius: 50px;
-	width: 156px;
+	width: 270px;
 }
 
 .bstats span {
@@ -163,6 +163,76 @@ p{
 }
 
 .bstats:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.bstatsJ{
+	margin-top: 11.1px;
+	background-image: linear-gradient(to bottom, red, blue);
+	border-width: 3px;
+	border-color: black;
+	border-radius: 50px;
+	width: 156px;
+}
+
+.bstatsJ span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.bstatsJ span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -25px;
+  transition: 0.5s;
+}
+
+.bstatsJ:hover span {
+  padding-right: 25px;
+}
+
+.bstatsJ:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.bstatsE{
+	margin-top: 11.1px;
+	background-image: linear-gradient(to bottom, red, orange);
+	border-width: 3px;
+	border-color: black;
+	border-radius: 50px;
+	width: 156px;
+}
+
+.bstatsE span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.bstatsE span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -25px;
+  transition: 0.5s;
+}
+
+.bstatsE:hover span {
+  padding-right: 25px;
+}
+
+.bstatsE:hover span:after {
   opacity: 1;
   right: 0;
 }
