@@ -35,6 +35,7 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('GAMESTEAM')
+            #return redirect('Estadisticas')
     else:
         form = UserCreationForm()
     return render(request,'registration/register.html',{'form':form})

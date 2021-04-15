@@ -1,7 +1,57 @@
-register.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>GAME&STEAM</title>
+        {% load static %}
+		<link href="{% static 'stylingreg.css'  %}" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="{% static 'funcs.js'  %}"></script>
+	</head>
 
+	
+	<header>
+  		<h1>Movimiento STEAM<br> <span class="anim"></span></h1>
+  		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+  		  <polygon class="svg--sm" fill=green points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
+  		  <polygon class="svg--lg" fill=green points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
+  		</svg>
+	</header>
+    <br><br><br>
+
+    <body>
+
+        <ol class="logul">
+            <p class = "logtitle"><b>Registro</b></p>
+        </ol>
+        
+        <br><br><br>
+<ol>
 <form method = "post">
     {{form.as_table}}
     {%csrf_token%}
     <input type="submit" value="Registrarme">
+</ol>
 </form>
+
+<br><br><br>
+
+<div class="stats">
+    <!--<button class="bstats"onclick="location.href='http//13.65.45.197:8000/GAMESTEAM'"><span> <b> GAME & STEAM </b> </span> </button>-->
+    <button class="bstats"onclick="location.href='http://127.0.0.1:8000/GAMESTEAM'"><span> <b> GAME & STEAM </b> </span> </button>
+   </div>
+
+  
+
+<br>
+<hr size="5" width="100%" color="black">
+   <footer>
+    <div class="downfoo">
+    <b>Autores:</b> Diego Enrique Manzanarez Velázquez    |   Santiago Orozco Quintero    |   Luis Enrique Bojórquez Almazán   |   Jesus Javier Hernández Delgado
+    </div>
+    <nav>
+        <a class="links" href="https://movimientosteam.org/historia-2/">Historia Movimiento STEAM</a>
+    </nav>
+</footer>
+</body>
+</html>
