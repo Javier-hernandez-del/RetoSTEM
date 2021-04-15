@@ -46,8 +46,7 @@
             {{form.as_table}}
             {%csrf_token%}
             <input type="submit" value="Confirmar">
-        
-            <a href="http://127.0.0.1:8000/accounts/login/?next=/Estadisticas">
+            <a href="{% url 'login'%}?next={{request.path}}">
                 <input type="button" value="Ya tengo cuenta" />
             </a>
             <a href="https://diegomanzanarez.github.io/">

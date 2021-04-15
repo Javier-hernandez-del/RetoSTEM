@@ -423,7 +423,8 @@
 	  	<h2 class="weird"><u>Tus datos generales</u></h2>
       <p class="visuals"><em>* Si quieres cerrar sesión por favor presiona aquí. </em>
         {% if user.is_authenticated%}
-        <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+       <!-- <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>-->
+        <a href="{% url 'logout'%}?next=/GAMESTEAM">Logout</a>
         <!-- <a onclick="openForm()"><b><u>obtener datos</u></b></a></em></p> -->
 
 
