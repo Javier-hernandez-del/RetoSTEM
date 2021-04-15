@@ -424,7 +424,7 @@ header {
 
 
   input[type=submit] {
-    width: 68%;
+    width: 45%;
     background-image: linear-gradient(to bottom, red , purple);
     color: white;
     padding: 14px 20px;
@@ -438,6 +438,21 @@ header {
     background-image: linear-gradient(to bottom, red, orange);
   }
   
+  input[type=button] {
+    width: 45%;
+    background-image: linear-gradient(to bottom, red , purple);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  
+  input[type=button]:hover {
+    background-image: linear-gradient(to bottom, red, orange);
+  }
+
   
   
   li {
