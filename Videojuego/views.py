@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from json import loads
 from . models import Usuarios
 from . models import Edades
@@ -26,6 +27,17 @@ def proceso(request):
     nombre = request.POST['Nombre']
     nombre = nombre.upper()
     return render(request,'GAMESTEAM.html',{'Name':nombre})
+
+def register(request):
+    #form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('GAMESTEAM')
+    else:
+        form = UserCreationForm()
+    return render(request,'registration/register.html',{'form':form})
 
 @login_required
 def datos(request):
