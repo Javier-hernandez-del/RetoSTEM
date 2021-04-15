@@ -21,22 +21,45 @@
 
     <body>
 
-        <ol class="logul">
-            <p class = "logtitle"><b>Registro</b></p>
-        </ol>
-        
-        <br><br><br>
-<ol>
-<form method = "post">
-    {{form.as_table}}
-    {%csrf_token%}
-    <input type="submit" value="Confirmar">
 
-    <a href="http://127.0.0.1:8000/accounts/login/?next=/Estadisticas">
-        <input type="button" value="Ya tengo cuenta" />
+
+    {% if user.is_authenticated %}
+    <ol class="logul">
+        <p class = "logtitle">¡<b>Hola {{user.get_username}}</b>! Bienvenid@ a GAME & STEAM</p>
+    </ol>
+    
+    <br><br><br>
+    <ol>
+    <p>Esperamos que disfrutes GAME & STEAM al poner a prueba tus habilidades de resolución de problemas. ¡Mucha Suerte!</p>
+    <a href="https://diegomanzanarez.github.io/">
+        <input type="button" value="JUGAR" />
     </a>
 </ol>
-</form>
+      {% else %}
+      <ol class="logul">
+        <p class = "logtitle"><b>Registro</b></p>
+    </ol>
+    
+    <br><br><br>
+      <ol>
+        <form method = "post">
+            {{form.as_table}}
+            {%csrf_token%}
+            <input type="submit" value="Confirmar">
+        
+            <a href="http://127.0.0.1:8000/accounts/login/?next=/Estadisticas">
+                <input type="button" value="Ya tengo cuenta" />
+            </a>
+            <a href="https://diegomanzanarez.github.io/">
+                <input type="button" value="PROFESORES ENTRAR AQUI PARA JUGAR" />
+            </a>
+        </ol>
+        </form>
+       
+    {% endif %}
+
+
+
 
 <br><br><br>
 

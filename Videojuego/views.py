@@ -23,6 +23,10 @@ def Estadisticas(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
     return render(request,'Estadisticas.html')
 
+def EstadisticasGlobales(request):
+    #return HttpResponse('<h1> Saludos desde Django</h1>')
+    return render(request,'EstadisticasGlobales.html')
+
 def proceso(request):
     nombre = request.POST['Nombre']
     nombre = nombre.upper()
@@ -59,6 +63,22 @@ def Estadisticas(request):
     else:
         carreras = "Ingeniería en Software, Mecatrónica"
     return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad, "genero":genero, "ultimo_inicio":ultimo_inicio, "carreras":carreras})
+
+"""@login_required
+def Estadisticas(request):
+    usuario = request.user
+    resultados = Usuarios.objects.filter(nombre=usuario)
+    nombre = resultados[0].nombre
+    score = resultados[0].minutos_jugados
+    edad = resultados[0].edad
+    genero = resultados[0].genero
+    ultimo_inicio = resultados[0].ultimo_inicio
+    if genero == "Masculino":
+        carreras = "QFB, Actuaría, Matemáticas Puras"
+    else:
+        carreras = "Ingeniería en Software, Mecatrónica"
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad, "genero":genero, "ultimo_inicio":ultimo_inicio, "carreras":carreras})
+"""
 
 """@login_required
 def Jugar(request):
