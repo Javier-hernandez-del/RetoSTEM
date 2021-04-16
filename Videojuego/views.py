@@ -49,6 +49,40 @@ def datos(request):
     jugadores = Usuarios.objects.all() #select * from Reto;
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
 
+@csrf_exempt
+def verificar_usuario(request):
+    nombre = "Diego"
+    retorno = {"nombreUsuario":nombre}
+    return JsonResponse(retorno)
+
+@csrf_exempt
+def score(request):
+    nombre = "Diego"
+    score = "1234"
+    retorno = {"nombreUsuario":nombre,"Score":score}
+    return JsonResponse(retorno)
+
+@csrf_exempt
+def guardar_nivel(request):
+    nombre = "Diego"
+    nivel = "2"
+    retorno = {"nombreUsuario":nombre,"nivelQuimica":nivel}
+    return JsonResponse(retorno)
+
+@csrf_exempt
+def guardar_login(request):
+    nombre = "Diego"
+    login = "2021-04-08"
+    retorno = {"nombreUsuario":nombre,"Login":login}
+    return JsonResponse(retorno)
+
+@csrf_exempt
+def genero(request):
+    nombre = "Diego"
+    genero = "Masculino"
+    retorno = {"nombreUsuario":nombre,"Genero":genero}
+    return JsonResponse(retorno)
+
 @login_required
 def Estadisticas(request):
     usuario = request.user

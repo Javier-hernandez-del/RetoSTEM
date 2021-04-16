@@ -16,6 +16,11 @@ urlpatterns = [
     path('buscaJugadorBody',views.buscaJugadorBody, name = 'buscaJugadorBody'),
     path('ejemploSQL', views.ejemploSQL, name='ejemploSQL'),
     path('accounts/register/', views.register, name='register'),
+    path('score',views.score, name = 'score'),
+    path('verificar_usuario',views.verificar_usuario, name = 'verificar_usuario'),
+    path('guardar_nivel',views.guardar_nivel, name = 'guardar_nivel'),
+    path('guardar_login',views.guardar_login, name = 'guardar_login'),
+    path('genero',views.genero, name = 'genero'),
     #path('score',views.score, name = 'score'),
 ]
 
