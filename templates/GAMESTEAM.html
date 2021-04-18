@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-MX" xml:lang="es-MX">
 	<head>
+		{% load static %}
+		<link href="{% static 'styling.css'  %}" rel="stylesheet" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>GAME&STEAM</title>
-        {% load static %}
-		<link href="{% static 'styling.css'  %}" rel="stylesheet" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="{% static 'styling.css'  %}" rel="stylesheet" />
 		<script type="text/javascript" src="{% static 'funcs.js'  %}"></script>
@@ -31,7 +31,7 @@
 
     	<p class="boxpadding">
     		<div class="boxed0">
-	  		<p> Presiona los botones numerados para visualizar los minijuegos </p>
+	  		<p> Presiona los botones numerados para visualizar los minijuegos</p>
 	  		</div>
 	  	</p>
 

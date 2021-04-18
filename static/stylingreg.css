@@ -122,6 +122,10 @@ header {
       text-align: center;
   
   }
+
+  .inden{
+      padding-left: 25%;
+  }
   
 
   .logtitle{
@@ -450,6 +454,22 @@ header {
   }
   
   input[type=button]:hover {
+    background-image: linear-gradient(to bottom, red, orange);
+  }
+
+input[type=buttonT] {
+    width: 60%;
+    text-align: center;
+    background-image: linear-gradient(to bottom, red , purple);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  
+  input[type=buttonT]:hover {
     background-image: linear-gradient(to bottom, red, orange);
   }
 

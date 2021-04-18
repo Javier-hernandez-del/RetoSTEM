@@ -10,7 +10,7 @@ h1 {
   padding: 36px 100px 100px 100px;
   text-align: center;
   text-shadow: 0 1/5px 0 black;
-  font: 46.3px "American typewriter";
+  font: 46.3px "American typewriter", 'Times New Roman', serif;
 }
 
 header h1 {
@@ -42,7 +42,7 @@ svg {
 
 
 body{
-	font-family: "American typewriter", Arial, serif;
+	font-family: "American typewriter", 'Times New Roman', serif;
 	/*background-image: linear-gradient(yellow, green);*/
 	background-image: linear-gradient(green, yellow);
 }
@@ -170,7 +170,7 @@ p{
 
 .bstatsJ{
 	margin-top: 11.1px;
-	background-image: linear-gradient(to bottom, red, blue);
+	background-image: linear-gradient(to bottom, red, orange);
 	border-width: 3px;
 	border-color: black;
 	border-radius: 50px;
