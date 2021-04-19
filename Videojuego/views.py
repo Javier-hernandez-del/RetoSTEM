@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from json import loads
 from . models import Usuarios
 from . models import Edades
+from . models import Reto
 import psycopg2
 
 # Create your views here.
@@ -83,6 +84,18 @@ def genero(request):
     retorno = {"nombreUsuario":nombre,"Genero":genero}
     return JsonResponse(retorno)
 
+@csrf_exempt
+def buscaJugadorBody(request):
+    body_unicode = request.body.decode('utf-8')
+    body_json = loads(body_unicode) #convertir de string a JSON
+    jugador_nombre = body_json['usuario']
+    resultados = Reto.objects.filter(nombre=jugador_nombre)  #select * from Reto where nombre = jugador_nombre
+    nombre = resultados[0].nombre
+    score = resultados[0].minutos_jugados
+    retorno = {"nombreUsuario":nombre,
+        "score":score}
+    return JsonResponse(retorno)
+
 @login_required
 def Estadisticas(request):
     usuario = request.user
@@ -144,7 +157,7 @@ def unity(request):
       retorno = {"nombreUsuario":nombre, "score":score}
       return JsonResponse(retorno)
 
-
+"""
 @csrf_exempt
 def buscaJugadorBody(request):
     body_unicode = request.body.decode('utf-8')
@@ -156,6 +169,7 @@ def buscaJugadorBody(request):
     retorno = {"nombreUsuario":nombre,
         "score":score}
     return JsonResponse(retorno)
+    """
 
 
 @csrf_exempt

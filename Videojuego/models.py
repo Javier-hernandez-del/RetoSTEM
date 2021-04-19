@@ -17,5 +17,6 @@ class PermanenciaEnLinea(models.Model):
     nombre = models.CharField(max_length=30)
     permanencia = models.IntegerField()
 
-#class Reto(models.Model):
-#    nombre = models.CharField(max_length=30)
+class Reto(models.Model):
+    nombre = models.CharField(max_length=30)
+    minutos_jugados = models.IntegerField()
