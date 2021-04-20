@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from json import loads
 from . models import Usuarios
 from . models import Edades
@@ -15,6 +16,18 @@ import psycopg2
 def index(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
     return render(request,'index.html')
+
+def nuevo_usuario(request):
+    nombre = request.POST['Nombre']
+    edad = request.POST['Edad']
+    genero = request.POST['Genero']
+    correo = request.POST['Correo']
+    contrasena = request.POST['Contrasena']
+    u1 = Usuarios(nombre=nombre, edad=edad, genero=genero)
+    u = User.objects.create_user(username=nombre, email=correo, password=contrasena)
+    u1.save()
+    u.save()
+    return render(request, 'GAMESTEAM.html')
 
 def GAMESTEAM(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
@@ -84,6 +97,7 @@ def genero(request):
     retorno = {"nombreUsuario":nombre,"Genero":genero}
     return JsonResponse(retorno)
 
+
 @csrf_exempt
 def buscaJugadorBody(request):
     body_unicode = request.body.decode('utf-8')
@@ -95,22 +109,21 @@ def buscaJugadorBody(request):
     retorno = {"nombreUsuario":nombre,
         "score":score}
     return JsonResponse(retorno)
+    
 
 @login_required
 def Estadisticas(request):
     usuario = request.user
     resultados = Usuarios.objects.filter(nombre=usuario)
     nombre = resultados[0].nombre
-    score = resultados[0].minutos_jugados
     edad = resultados[0].edad
     genero = resultados[0].genero
-    ultimo_inicio = resultados[0].ultimo_inicio
     if genero == "Masculino":
         carreras = "QFB, Actuaría, Matemáticas Puras"
     else:
         carreras = "Ingeniería en Software, Mecatrónica"
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad, "genero":genero, "ultimo_inicio":ultimo_inicio, "carreras":carreras})
-
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras})
+ 
 """@login_required
 def Estadisticas(request):
     usuario = request.user

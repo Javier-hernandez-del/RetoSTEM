@@ -555,12 +555,26 @@ li {
         width: 100%;
         margin-bottom: 15px;
         opacity: 10;
-        border-radius: 50px;
+        border-radius: 5px;
       }
       .formContainer .cancel {
         background-color: #cc0000;
         opacity: 10;
       }
+
+      .formContainer .btn5 {
+        padding: 7px 20px;
+        border: none;
+        /*background-color: #8ebf42;*/
+        background-color: purple;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 15px;
+        opacity: 10;
+        border-radius: 50px;
+      }
+
       .formContainer .btn:hover,
       .openButton:hover {
         opacity: 10;

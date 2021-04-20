@@ -6,8 +6,7 @@ class Usuarios(models.Model):
     nombre = models.CharField(max_length=30)
     edad = models.IntegerField()
     genero = models.CharField(max_length=10)
-    minutos_jugados = models.FloatField()
-    ultimo_inicio= models.DateField()
+
 
 class Edades(models.Model):
     nombre = models.ForeignKey(Usuarios, on_delete=models.SET_NULL,null=True,blank=True)

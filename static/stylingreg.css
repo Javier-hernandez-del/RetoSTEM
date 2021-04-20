@@ -550,6 +550,8 @@ input[type=buttonT] {
           opacity: 10;
           border-radius: 50px;
         }
+
+
         .formContainer .cancel {
           background-color: #cc0000;
           opacity: 10;
@@ -558,6 +560,12 @@ input[type=buttonT] {
         .openButton:hover {
           opacity: 10;
         }
+
+        .formContainer .btn5 {
+            background-color: purple;
+            opacity: 10;
+            border-radius: 50px;
+          }
   
   
   footer{

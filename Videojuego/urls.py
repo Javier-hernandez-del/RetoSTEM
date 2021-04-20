@@ -21,6 +21,8 @@ urlpatterns = [
     path('guardar_nivel',views.guardar_nivel, name = 'guardar_nivel'),
     path('guardar_login',views.guardar_login, name = 'guardar_login'),
     path('genero',views.genero, name = 'genero'),
+    path('nuevo_usuario',views.nuevo_usuario, name = 'nuevo_usuario'),
+
     #path('score',views.score, name = 'score'),
 ]
 
