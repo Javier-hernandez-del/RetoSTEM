@@ -27,7 +27,7 @@ def nuevo_usuario(request):
     u = User.objects.create_user(username=nombre, email=correo, password=contrasena)
     u1.save()
     u.save()
-    return render(request, 'GAMESTEAM.html')
+    return render(request, 'registration/login.html')
 
 def GAMESTEAM(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')

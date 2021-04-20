@@ -145,7 +145,7 @@
 				<form action="nuevo_usuario" class="formContainer" method = "POST">
 					{% csrf_token %}
 				 <h2 class="formheader">Antes de comenzar,    por favor registrate</h2>
-				 <button type="button" class="btn cancel" style="background-color:orangered; color:white;" onclick="closeForm()">Ya tengo cuenta</button>
+				 <button type="button" class="btn cancel" style="background-color:orangered; color:white;" onclick="location.href='http://127.0.0.1:8000/accounts/login/'">Ya tengo cuenta</button>
 	   
 				 <label for="Nombre">
 				   <strong>Usuarname</strong>

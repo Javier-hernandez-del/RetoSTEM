@@ -23,6 +23,19 @@
         <br><br><br><br><br>
  
         <body>
+            {% if user.is_authenticated %}
+            <ul class="logul">
+                <p class = "logtitle"><b>¡Hola {{user.get_username}}! Bienvenid@ a GAME & STEAM</b></p>
+            </ul>
+            
+            <br><br><br>
+            <ul>
+            <p>Esperamos que disfrutes GAME & STEAM al poner a prueba tus habilidades de resolución de problemas. ¡Mucha Suerte!</p>
+            <a href="https://diegomanzanarez.github.io/">
+                <p class = "inden">  <input type="buttonT" value="JUGAR" /></p>
+            </a>
+        </ul>
+              {% else %}
 
 <ul class="logul">
     <p class = "logtitle"><b>Inicio de Sesión</b></p>
@@ -36,15 +49,15 @@
   <p><u><b>El usuario no correspende con la contraseña. Por favor inténtalo de nuevo.</b></u></p>
 {% endif %}
 
-{% if next %}
+<!--{% if next %}
   {% if user.is_authenticated %}
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
   {% else %}
     <p>Para visualizar tus datos necesario llevar a cabo la identificación</p>
   {% endif %}
-{% endif %}
-
+{% endif %}-->
+<p>Para visualizar tus datos es necesario llevar a cabo la identificación</p>
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
   
@@ -60,7 +73,7 @@
   </table>
   <input type="submit" value="Confirmar" />
   <input type="hidden" name="next" value="{{ next }}" />
-  <a href="http://127.0.0.1:8000/accounts/register/">
+  <a href="http://127.0.0.1:8000/GAMESTEAM">
 <!--<a href="http://13.65.45.1197:8000/accounts/register/"></a>-->
 <input type="button" value="No tengo cuenta" />
 </a>
@@ -68,6 +81,8 @@
   </ul>
 </form>
 
+{% endblock %}
+{% endif %}
 
 
 
@@ -78,7 +93,7 @@
     <button class="bstats"onclick="location.href='http://127.0.0.1:8000/GAMESTEAM'"><span> <b> GAME & STEAM </b> </span> </button>
    </div>
 
-   {% endblock %}
+   
 
 <br>
 <hr size="5" width="100%" color="black">
