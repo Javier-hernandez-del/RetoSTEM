@@ -13,6 +13,9 @@ import psycopg2
 
 # Create your views here.
 
+def grafica(request):
+    return render(request,'grafica.html')
+
 def index(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
     return render(request,'index.html')

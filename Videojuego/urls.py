@@ -20,10 +20,15 @@ urlpatterns = [
     path('verificar_usuario',views.verificar_usuario, name = 'verificar_usuario'),
     path('guardar_nivel',views.guardar_nivel, name = 'guardar_nivel'),
     path('guardar_login',views.guardar_login, name = 'guardar_login'),
+<<<<<<< Updated upstream
     path('get_genero',views.get_genero, name = 'get_genero'),
     path('nuevo_usuario',views.nuevo_usuario, name = 'nuevo_usuario'),
     #path('/accounts/login/?next=/accounts/login/', views.log, name='log'),
 
+=======
+    path('genero',views.genero, name = 'genero'),
+    path('grafica',views.grafica, name = 'grafica'),
+>>>>>>> Stashed changes
     #path('score',views.score, name = 'score'),
 ]
 
