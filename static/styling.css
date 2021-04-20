@@ -533,7 +533,10 @@ li {
         background-color: white;
       }
       .formContainer input[type=text],
-      .formContainer input[type=password]{
+      .formContainer input[type=password],
+      .formContainer input[type=email],
+      .formContainer input[type=number]
+      {
         width: 100%;
         padding: 15px;
         margin: 5px 0 20px 0;
@@ -541,10 +544,13 @@ li {
         background: #eee;
       }
       .formContainer input[type=text]:focus,
+      .formContainer input[type=number]:focus,
+      .formContainer input[type=email]:focus,
       .formContainer input[type=password]:focus {
         background-color: #ddd;
         outline: none;
       }
+      
       .formContainer .btn {
         padding: 7px 20px;
         border: none;

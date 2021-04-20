@@ -22,6 +22,7 @@ urlpatterns = [
     path('guardar_login',views.guardar_login, name = 'guardar_login'),
     path('get_genero',views.get_genero, name = 'get_genero'),
     path('nuevo_usuario',views.nuevo_usuario, name = 'nuevo_usuario'),
+    #path('/accounts/login/?next=/accounts/login/', views.log, name='log'),
 
     #path('score',views.score, name = 'score'),
 ]
