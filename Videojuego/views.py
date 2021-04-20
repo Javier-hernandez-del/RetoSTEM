@@ -23,6 +23,7 @@ def nuevo_usuario(request):
     genero = request.POST['Genero']
     correo = request.POST['Correo']
     contrasena = request.POST['Contrasena']
+    #last = User.objects.get(username=nombre).last_login
     u1 = Usuarios(nombre=nombre, edad=edad, genero=genero)
     u = User.objects.create_user(username=nombre, email=correo, password=contrasena)
     u1.save()
@@ -63,38 +64,108 @@ def datos(request):
     jugadores = Usuarios.objects.all() #select * from Reto;
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
 
+
+"""
 @csrf_exempt
 def verificar_usuario(request):
     nombre = "Diego"
     retorno = {"nombreUsuario":nombre}
     return JsonResponse(retorno)
+"""
 
+@csrf_exempt
+def verificar_usuario(request):
+    body_unicode = request.body.decode('utf-8')
+    body_json = loads(body_unicode) #convertir de string a JSON
+    jugador_nombre = body_json['usuario']
+    resultados = Usuarios.objects.filter(nombre=jugador_nombre)  #select * from Reto where nombre = jugador_nombre
+    nombre = resultados[0].nombre
+    retorno = {"nombreUsuario":nombre}
+    return JsonResponse(retorno)
+
+"""
 @csrf_exempt
 def score(request):
     nombre = "Diego"
     score = "1234"
     retorno = {"nombreUsuario":nombre,"Score":score}
     return JsonResponse(retorno)
+"""
 
+@csrf_exempt
+def score(request):
+    body_unicode = request.body.decode('utf-8')
+    body_json = loads(body_unicode) #convertir de string a JSON
+    jugador_nombre = body_json['usuario']
+    resultados = Usuarios.objects.filter(nombre=jugador_nombre)  #select * from Reto where nombre = jugador_nombre
+    nombre = resultados[0].nombre
+    #score = resultados[0].minutos_jugados
+    score = "10"
+    retorno = {"nombreUsuario":nombre, "puntuacion":score}
+    return JsonResponse(retorno)
+
+
+"""
 @csrf_exempt
 def guardar_nivel(request):
     nombre = "Diego"
     nivel = "2"
     retorno = {"nombreUsuario":nombre,"nivelQuimica":nivel}
     return JsonResponse(retorno)
+"""
 
+@csrf_exempt
+def guardar_nivel(request):
+    body_unicode = request.body.decode('utf-8')
+    body_json = loads(body_unicode) #convertir de string a JSON
+    jugador_nombre = body_json['usuario']
+    resultados = Usuarios.objects.filter(nombre=jugador_nombre)  #select * from Reto where nombre = jugador_nombre
+    nombre = resultados[0].nombre
+    #score = resultados[0].minutos_jugados
+    nivel = "2"
+    retorno = {"nombreUsuario":nombre, "nivel":nivel}
+    return JsonResponse(retorno)
+
+"""
 @csrf_exempt
 def guardar_login(request):
     nombre = "Diego"
     login = "2021-04-08"
     retorno = {"nombreUsuario":nombre,"Login":login}
     return JsonResponse(retorno)
+"""
+
+@csrf_exempt
+def guardar_login(request):
+    body_unicode = request.body.decode('utf-8')
+    body_json = loads(body_unicode) #convertir de string a JSON
+    jugador_nombre = body_json['usuario']
+    resultados = Usuarios.objects.filter(nombre=jugador_nombre)  #select * from Reto where nombre = jugador_nombre
+    nombre = resultados[0].nombre
+    #score = resultados[0].minutos_jugados
+    last_login = "2021-04-19"
+    retorno = {"nombreUsuario":nombre, "ultimo_inicio":last_login}
+    return JsonResponse(retorno)
+
+"""
 
 @csrf_exempt
 def genero(request):
     nombre = "Diego"
     genero = "Masculino"
     retorno = {"nombreUsuario":nombre,"Genero":genero}
+    return JsonResponse(retorno)
+"""
+
+@csrf_exempt
+def get_genero(request):
+    body_unicode = request.body.decode('utf-8')
+    body_json = loads(body_unicode) #convertir de string a JSON
+    jugador_nombre = body_json['usuario']
+    resultados = Usuarios.objects.filter(nombre=jugador_nombre)  #select * from Reto where nombre = jugador_nombre
+    nombre = resultados[0].nombre
+    genero = resultados[0].genero
+    retorno = {"nombreUsuario":nombre, "genero":genero}
     return JsonResponse(retorno)
 
 
@@ -135,31 +206,6 @@ def Estadisticas(request):
     #    carreras = "Ingeniería en Software, Mecatrónica"
     return render(request, 'Estadisticas.html', {"nombreUsuario":nombre})"""
 
-
-"""@login_required
-def Jugar(request):
-    usuario = request.user
-    resultados = Usuarios.objects.filter(nombre=usuario)
-    nombre = resultados[0].nombre
-    score = resultados[0].minutos_jugados
-    edad = resultados[0].edad
-    genero = resultados[0].genero
-    ultimo_inicio = resultados[0].ultimo_inicio
-    if genero == "Masculino":
-        carreras = "QFB, Actuaría, Matemáticas Puras"
-    else:
-        carreras = "Ingeniería en Software, Mecatrónica"
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"score":score, "edad":edad, "genero":genero, "ultimo_inicio":ultimo_inicio, "carreras":carreras})
-"""
-
-"""@login_required
-def edad(request):
-    usuario = request.user
-    resultados = Usuarios.objects.filter(nombre=usuario)
-    nombre = resultados[0].nombre
-    edad = resultados[0].edad
-    return render(request, 'score.html', {"nombreUsuario":nombre,"edad":edad})
-"""
 
 
 

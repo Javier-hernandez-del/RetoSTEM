@@ -6,6 +6,7 @@ class Usuarios(models.Model):
     nombre = models.CharField(max_length=30)
     edad = models.IntegerField()
     genero = models.CharField(max_length=10)
+    #datetime = models.DateTimeField(auto_now=True)
 
 
 class Edades(models.Model):
