@@ -5,17 +5,54 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from json import loads
+from json import loads, dumps
 from . models import Usuarios
 from . models import Edades
 from . models import Reto
+from . models import PermanenciaEnLinea
+from random import randrange
 import psycopg2
 
 # Create your views here.
 
 def index(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
+
     return render(request,'index.html')
+
+def grafica(request):
+    #data = [['Age', 'Weight'],[ 8,      12],[ 4,      5.5],[ 11,     14],[ 4,      5],[ 3,      3.5],[ 6.5,    7]]
+    data = [['Edad', 'Peso']]
+    for i in range(0,11):
+        x = randrange(100)
+        y = randrange(100)
+        data.append([x,y])
+    datos_formato = dumps(data)
+    return render(request,'grafica.html', {'losDatos':datos_formato})
+
+def barras(request):
+    '''
+    data = [
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350]
+        ]
+    '''
+    data = [['Nombre', 'Minutos jugados']]
+    resultados = PermanenciaEnLinea.objects.all() #select * from Reto;
+    for i in resultados:
+        x = i.nombre
+        y = i.permanencia
+        data.append([x,y])
+    
+    datos_formato = dumps(data)    
+    titulo = 'Indicador STEM'
+    subtitulo = 'Minutos jugados totales'
+    titulo_formato = dumps(titulo)
+    subtitulo_formato = dumps(subtitulo)
+    return render(request,'barras.html', {'losDatos':datos_formato, 'titulo':titulo_formato, 'subtitulo':subtitulo_formato})
 
 def nuevo_usuario(request):
     nombre = request.POST['Nombre']
@@ -181,6 +218,31 @@ def buscaJugadorBody(request):
     retorno = {"nombreUsuario":nombre,
         "score":score}
     return JsonResponse(retorno)
+
+"""
+def barras(request):
+    '''
+    data = [
+          ['Year', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 1170, 460, 250],
+          ['2016', 660, 1120, 300],
+          ['2017', 1030, 540, 350]
+        ]
+    '''
+    data = [['Nombre', 'Minutos jugados']]
+    resultados = PermanenciaEnLinea.objects.all() #select * from Reto;
+    for i in resultados:
+        x = i.nombre
+        y = i.permanencia
+        data.append([x,y])
+    
+    datos_formato = dumps(data)    
+    titulo = 'Indicador STEM'
+    subtitulo = 'Minutos jugados totales'
+    titulo_formato = dumps(titulo)
+    subtitulo_formato = dumps(subtitulo)
+    return render(request,'barras.html', {'losDatos':datos_formato, 'titulo':titulo_formato, 'subtitulo':subtitulo_formato}"""
     
 
 @login_required

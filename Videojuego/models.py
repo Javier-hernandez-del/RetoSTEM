@@ -18,5 +18,8 @@ class PermanenciaEnLinea(models.Model):
     permanencia = models.IntegerField()
 
 class Reto(models.Model):
-    nombre = models.CharField(max_length=30)
+    nombre = models.ForeignKey(Usuarios, on_delete=models.SET_NULL,null=True,blank=True)
+    finalizado = models.BooleanField()
+    tiempoTotal = models.PositiveIntegerField(blank=True, null=True)
+    tiempoMenor = models.DateTimeField(null=True)
     minutos_jugados = models.IntegerField()

@@ -523,7 +523,7 @@ li {
         top: 7%;
         transform: translate(-20%, 5%);
         border: 25px solid;
-		border-image-source: linear-gradient(45deg, blue, purple, pink, blue, purple, pink, blue, purple, pink);
+		border-image-source: linear-gradient(45deg, blue, purple, pink, blue, purple, pink, blue, purple, pink, blue, purple, pink, blue, purple, pink, blue, purple, pink );
   		border-image-slice: 1;
         z-index: 9;
       }
