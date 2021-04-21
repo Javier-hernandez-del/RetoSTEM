@@ -25,7 +25,6 @@ urlpatterns = [
     path('grafica',views.grafica, name = 'grafica'),
     path('barras',views.barras, name = 'barras'),h
     #path('/accounts/login/?next=/accounts/login/', views.log, name='log'),
-
     #path('score',views.score, name = 'score'),
 ]
 
