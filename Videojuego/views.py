@@ -8,10 +8,11 @@ from django.contrib.auth.models import User
 from json import loads, dumps
 from . models import Usuarios
 from . models import Edades
-from . models import Reto
 from . models import PermanenciaEnLinea
+from . models import MinijuegoCompu, MinijuegoFisica, MinijuegoQuimica
 from random import randrange
 import psycopg2
+import datetime
 
 # Create your views here.
 
@@ -63,8 +64,10 @@ def nuevo_usuario(request):
     genero = request.POST['Genero']
     correo = request.POST['Correo']
     contrasena = request.POST['Contrasena']
+    area_fav = request.POST['Area']
+    #ultimo_inicio = datetime.datetime.now().date()
     #last = User.objects.get(username=nombre).last_login
-    u1 = Usuarios(nombre=nombre, edad=edad, genero=genero)
+    u1 = Usuarios(nombre=nombre, edad=edad, genero=genero, area_fav=area_fav)
     u = User.objects.create_user(username=nombre, email=correo, password=contrasena)
     u1.save()
     u.save()
@@ -255,11 +258,13 @@ def Estadisticas(request):
     nombre = resultados[0].nombre
     edad = resultados[0].edad
     genero = resultados[0].genero
+    xuser = Usuarios.objects.get(nombre=usuario)
+    last_login = xuser.last_login
     if genero == "Masculino":
         carreras = "QFB, Actuaría, Matemáticas Puras"
     else:
         carreras = "Ingeniería en Software, Mecatrónica"
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras})
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login_":last_login})
  
 """@login_required
 def Estadisticas(request):

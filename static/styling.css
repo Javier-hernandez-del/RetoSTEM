@@ -403,7 +403,6 @@ button:active {
 
 .boxed0{
   width: 512.3px;
-  height: 380px
   padding: 1px;
   border: 6.5px solid black;
   border-radius: 10px;
@@ -416,7 +415,6 @@ button:active {
 .boxed {
 border-radius: 30px;
   width: 512.3px;
-  height: 380px
   padding: 10px;
   background-color: white;
   border: 6px solid;
@@ -512,7 +510,8 @@ li {
 
 
 	.formheader{
-		font-size: 20px;
+		font-size: 50px;
+    text-align: center;
 	}
 
       .formPopup {
