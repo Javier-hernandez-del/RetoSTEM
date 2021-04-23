@@ -2,27 +2,216 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
+      google.charts.load('current', {'packages':['bar','corechart']});
+  
       google.charts.setOnLoadCallback(drawChart);
+      
+      google.charts.setOnLoadCallback(drawChart1);
+
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+      google.charts.setOnLoadCallback(drawChart4);
+      google.charts.setOnLoadCallback(drawChart5);
+      google.charts.setOnLoadCallback(drawChart6);
+      google.charts.setOnLoadCallback(drawChart7);
+      google.charts.setOnLoadCallback(drawChart8);
+      google.charts.setOnLoadCallback(drawChart9);
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable({{ losDatos | safe}});
+        var data = google.visualization.arrayToDataTable({{losDatos|safe}});
 
         var options = {
           chart: {
-            title:{{titulo | safe }},
-            subtitle: {{subtitulo | safe }},
+            title: {{titulo|safe}},
+            subtitle: {{subtitulo|safe}},
           },
-          bars: 'horizontal' // Required for Material Bar Charts.
+          bars: 'vertical' // Required for Material Bar Charts.
         };
 
         var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
+        
       }
-    </script>
+
+
+    function drawChart1() {
+    var data = google.visualization.arrayToDataTable({{losDatos1|safe}});
+
+
+    var options = {
+      backgroundColor: 'transparent',
+      chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+      is3D: true,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+    chart.draw(data, options);
+  }
+
+
+  function drawChart2() {
+        var data = google.visualization.arrayToDataTable({{losDatos2|safe}});
+
+        var options = {
+          chart: {
+            title: {{titulo|safe}},
+            subtitle: {{subtitulo|safe}},
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material2'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+      }
+
+
+      function drawChart1() {
+    var data = google.visualization.arrayToDataTable({{losDatos1|safe}});
+
+
+    var options = {
+      backgroundColor: 'transparent',
+      chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+      is3D: true,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+    chart.draw(data, options);
+  }
+
+
+  function drawChart3() {
+    var data = google.visualization.arrayToDataTable({{losDatos3|safe}});
+
+        var options = {
+        backgroundColor: 'transparent',
+        chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+
+      function drawChart4() {
+    var data = google.visualization.arrayToDataTable({{losDatos4|safe}});
+
+        var options = {
+        backgroundColor: 'transparent',
+        chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart1'));
+        chart.draw(data, options);
+      }
+
+      function drawChart5() {
+    var data = google.visualization.arrayToDataTable({{losDatos5|safe}});
+
+        var options = {
+        backgroundColor: 'transparent',
+        chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart2'));
+        chart.draw(data, options);
+      }
+
+
+      function drawChart6() {
+        var data = google.visualization.arrayToDataTable({{losDatos6|safe}});
+
+        var options = {
+          chart: {
+            title: {{titulo|safe}},
+            subtitle: {{subtitulo|safe}},
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material3'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+      }
+
+      function drawChart7() {
+        var data = google.visualization.arrayToDataTable({{losDatos7|safe}});
+
+        var options = {
+          chart: {
+            title: {{titulo|safe}},
+            subtitle: {{subtitulo|safe}},
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material4'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+      }
+
+      function drawChart8() {
+        var data = google.visualization.arrayToDataTable({{losDatos8|safe}});
+
+        var options = {
+          chart: {
+            title: {{titulo|safe}},
+            subtitle: {{subtitulo|safe}},
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material5'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+      }
+
+      function drawChart9() {
+        var data = google.visualization.arrayToDataTable({{losDatos9|safe}});
+
+        var options = {
+          chart: {
+            title: {{titulo|safe}},
+            subtitle: {{subtitulo|safe}},
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material6'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+        
+      }
+      
+      
+
+
+
+  </script>
+  
   </head>
   <body>
     <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_material2" style="width: 900px; height: 500px;"></div>
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+    <div id="donutchart1" style="width: 900px; height: 500px;"></div>
+    <div id="donutchart2" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_material3" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_material4" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_material5" style="width: 900px; height: 500px;"></div>
+    <div id="barchart_material6" style="width: 900px; height: 500px;"></div>
+
+
   </body>
 </html>
+
+

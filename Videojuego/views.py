@@ -109,13 +109,6 @@ def datos(request):
     return render(request, 'datos.html',{'lista_jugadores':jugadores})
 
 
-"""
-@csrf_exempt
-def verificar_usuario(request):
-    nombre = "Diego"
-    retorno = {"nombreUsuario":nombre}
-    return JsonResponse(retorno)
-"""
 
 @csrf_exempt
 def verificar_usuario(request):
@@ -127,14 +120,7 @@ def verificar_usuario(request):
     retorno = {"nombreUsuario":nombre}
     return JsonResponse(retorno)
 
-"""
-@csrf_exempt
-def score(request):
-    nombre = "Diego"
-    score = "1234"
-    retorno = {"nombreUsuario":nombre,"Score":score}
-    return JsonResponse(retorno)
-"""
+
 
 @csrf_exempt
 def score(request):
@@ -149,14 +135,6 @@ def score(request):
     return JsonResponse(retorno)
 
 
-"""
-@csrf_exempt
-def guardar_nivel(request):
-    nombre = "Diego"
-    nivel = "2"
-    retorno = {"nombreUsuario":nombre,"nivelQuimica":nivel}
-    return JsonResponse(retorno)
-"""
 
 @csrf_exempt
 def guardar_nivel(request):
@@ -170,14 +148,7 @@ def guardar_nivel(request):
     retorno = {"nombreUsuario":nombre, "nivel":nivel}
     return JsonResponse(retorno)
 
-"""
-@csrf_exempt
-def guardar_login(request):
-    nombre = "Diego"
-    login = "2021-04-08"
-    retorno = {"nombreUsuario":nombre,"Login":login}
-    return JsonResponse(retorno)
-"""
+
 
 @csrf_exempt
 def guardar_login(request):
@@ -225,30 +196,143 @@ def buscaJugadorBody(request):
         "score":score}
     return JsonResponse(retorno)
 
-"""
+@csrf_exempt
 def barras(request):
-    '''
-    data = [
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
-        ]
-    '''
-    data = [['Nombre', 'Minutos jugados']]
-    resultados = PermanenciaEnLinea.objects.all() #select * from Reto;
-    for i in resultados:
-        x = i.nombre
-        y = i.permanencia
-        data.append([x,y])
+    #Inica grafica de minutos jugados
+    data = [['Nombre','Minutos jugados']]
+   
+    resultados = Usuarios.objects.all()
+    quimica = MinijuegoQuimica.objects.all()
+    fisica = MinijuegoFisica.objects.all()
+    compu = MinijuegoCompu.objects.all()
+
+
+    nombre = resultados[0].nombre
+    #minutos_jugados = resultados[0].minutos_jugados
+    #for i in resultados:
+    #    x=i.nombre
+    #    y=i
+    #    data.append([x,y])
+
+    data.append(['Diego', 10])
     
-    datos_formato = dumps(data)    
-    titulo = 'Indicador STEM'
-    subtitulo = 'Minutos jugados totales'
+    datos_formato=dumps(data)
+    titulo='Indicadores STEM'
+    subtitulo='Minutos jugados'
     titulo_formato = dumps(titulo)
-    subtitulo_formato = dumps(subtitulo)
-    return render(request,'barras.html', {'losDatos':datos_formato, 'titulo':titulo_formato, 'subtitulo':subtitulo_formato}"""
+    subtitulo_formato =dumps(subtitulo)
+    #Termina grafica de barras minutos jugados
+
+    #Inicia grafica de pastel de edad
+    data1=[['Edad','Número personas']]
+    edad = resultados[0].edad
+    menores_12=0
+    entre_1218=0
+    mayores18 =0
+    for i in resultados:
+        if(i.edad < 12):
+            menores_12 += 1
+        elif(i.edad > 12 and i.edad < 18):
+            entre_1218 += 1
+        else:
+            mayores18 += 1
+    data1.append(['<12',menores_12])
+    data1.append(['entre 12 y 18',entre_1218])
+    data1.append(['mayores 18',mayores18])
+    datos_formato1=dumps(data1)
+    titulo1='Indicadores STEM'
+    subtitulo1='Edades'
+    titulo_formato1 = dumps(titulo1)
+    subtitulo_formato1 =dumps(subtitulo1)
+    #Termina grafica de pastel de edades
+    
+    #Inicia grafica de barras topscore de cada juego
+    data2 = [['Nombre','Score']]
+   
+
+    #scores=quimica[0].scoreQuimica
+    topQ= 0
+    topF = 0
+    topC = 0
+    for i in quimica:
+        topQ = max(topQ,i.scoreQuimica)
+
+    for k in fisica:
+        topF = max(topF,k.scoreFisica)
+        
+    for l in compu:
+        topC = max(topC,l.scoreCompu)
+
+    data2.append(['Mezclas',topQ])
+    data2.append(['Basquetbal',topF])
+    data2.append(['MathCube',topC])
+
+    #topQ = max()
+    #topF = max(resultados.scoreFisica)
+    #topC = max(resultados.scoreCompu)
+        
+    #data2.append(['Mezclas',topQ])
+    #data2.append(['MathCube',topC])
+    #data2.append(['Basquet',topF])
+    datos_formato2=dumps(data2)
+    titulo2='Indicadores STEM'
+    subtitulo2='Score'
+    titulo_formato2 = dumps(titulo2)
+    subtitulo_formato2 =dumps(subtitulo2)
+
+    #Finn de grafica de barras topscore cada juego
+
+
+    #Inicio de grafica de dona de genero
+    data3=[['Genero','Número personas']]
+    genero = resultados[0].genero
+    hombres=0
+    mujeres=0
+
+    for i in resultados:
+        if(i.genero == 'Masculino'):
+            hombres += 1
+        else:
+            mujeres += 1
+
+    data3.append(['Hombres',hombres])
+    data3.append(['Mujeres',mujeres])
+    datos_formato3=dumps(data3)
+    titulo3='Indicadores STEM'
+    subtitulo3='Generos'
+    titulo_formato3 = dumps(titulo3)
+    subtitulo_formato3 =dumps(subtitulo3)
+
+    #Termino de grafica de dona de genero
+
+
+    #Inicio de grafica de dona permanencia mayor a 10 min
+    data4=[['Genero','Número personas']]
+    genero2 = resultados[0].genero
+    hombres10=0
+    mujeres10=0
+
+    for i in fisica:
+        if(i.tiempo_jugado_fisica>10):
+            if(i.nombre.genero == 'Masculino'):
+                hombres10 += 1
+            else:
+                mujeres10 += 1
+
+    data4.append(['Hombres10',hombres10])
+    data4.append(['Mujeres10',mujeres10])
+    datos_formato4=dumps(data4)
+    titulo4='Indicadores STEM'
+    subtitulo4='Más de 10 min jugando'
+    titulo_formato4 = dumps(titulo4)
+    subtitulo_formato4 =dumps(subtitulo4)
+
+
+
+
+    return render(request, 'barras.html',{'losDatos':datos_formato,'losDatos1':datos_formato1,'losDatos2':datos_formato2,'losDatos3':datos_formato3,'losDatos4':datos_formato4,
+    'titulo':titulo_formato,'titulo1':titulo_formato1,'titulo2':titulo_formato2,'titulo3':titulo_formato3,'titulo4':titulo_formato4,
+    'subtitulo':subtitulo_formato,'subtitulo1':subtitulo_formato1,'subtitulo2':subtitulo_formato2,'subtitulo3':subtitulo_formato3,'subtitulo4':subtitulo_formato4})
     
 
 @login_required
