@@ -13,19 +13,15 @@ urlpatterns = [
     path('EstadisticasGlobales',views.EstadisticasGlobales, name = 'EstadisticasGlobales'),
     path('datos',views.datos, name = 'datos'),
     path('unity',views.unity, name = 'unity'),
-    path('buscaJugadorBody',views.buscaJugadorBody, name = 'buscaJugadorBody'),
     path('ejemploSQL', views.ejemploSQL, name='ejemploSQL'),
     path('accounts/register/', views.register, name='register'),
-    path('score',views.score, name = 'score'),
-    path('verificar_usuario',views.verificar_usuario, name = 'verificar_usuario'),
-    path('guardar_nivel',views.guardar_nivel, name = 'guardar_nivel'),
-    path('guardar_login',views.guardar_login, name = 'guardar_login'),
-    path('get_genero',views.get_genero, name = 'get_genero'),
     path('nuevo_usuario',views.nuevo_usuario, name = 'nuevo_usuario'),
     path('grafica',views.grafica, name = 'grafica'),
     path('barras',views.barras, name = 'barras'),
-    #path('/accounts/login/?next=/accounts/login/', views.log, name='log'),
-    #path('score',views.score, name = 'score'),
+    path('login_unity',views.login_unity, name = 'login_unity'),
+    path('buscaJugadorBodyQuimca',views.buscaJugadorBodyQuimca, name = 'buscaJugadorBodyQuimca'),
+    path('DatosFisica',views.DatosFisica, name = 'DatosFisica'),
+    path('DatosCompu',views.DatosCompu, name = 'DatosCompu'),
 ]
 
 urlpatterns += [

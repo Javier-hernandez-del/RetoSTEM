@@ -7,16 +7,9 @@ class Usuarios(models.Model):
     edad = models.IntegerField()
     genero = models.CharField(max_length=10)
     area_fav = models.CharField(max_length=10)
-    last_login = models.DateTimeField(auto_now=True)
+    password = models.CharField(max_length=10)
+    #last_login = models.DateTimeField(auto_now=True)
 
-
-class Edades(models.Model):
-    nombre = models.ForeignKey(Usuarios, on_delete=models.SET_NULL,null=True,blank=True)
-    edad = models.IntegerField()
-
-class PermanenciaEnLinea(models.Model):
-    nombre = models.CharField(max_length=30)
-    permanencia = models.IntegerField()
 
 class MinijuegoCompu(models.Model):
     nombre = models.ForeignKey(Usuarios,on_delete=models.SET_NULL,null=True,blank=True)

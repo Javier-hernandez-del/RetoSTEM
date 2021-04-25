@@ -519,8 +519,8 @@ li {
       	padding: 0px 0px 0px 0px;
         display: none;
         position: fixed;
-        left: 45%;
-        top: 7%;
+        left: 40%;
+        top: 0%;
         transform: translate(-20%, 5%);
         border: 25px solid;
 		border-image-source: linear-gradient(45deg, blue, purple, pink, blue, purple, pink, blue, purple, pink, blue, purple, pink, blue, purple, pink, blue, purple, pink );
@@ -528,7 +528,7 @@ li {
         z-index: 9;
       }
       .formContainer {
-        max-width: 300px;
+        max-width: 500px;
         padding: 10px;
         background-color: white;
       }
