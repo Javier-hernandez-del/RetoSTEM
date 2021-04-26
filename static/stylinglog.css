@@ -452,8 +452,13 @@ header {
       /*color: #214D07;*/
       color: #1D211D;
   }
-  .inden{
+
+.inden{
     padding-left: 18%;
+}
+
+.indenq{
+    padding-left: 30%;
 }
   
   div {   

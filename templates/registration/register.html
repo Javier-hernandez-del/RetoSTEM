@@ -24,77 +24,7 @@
 
 
 
-    {% if user.is_authenticated %}
-    <ol class="logul">
-        <p class = "logtitle"><b>¡Hola {{user.get_username}}! Bienvenid@ a GAME & STEAM</b></p>
-    </ol>
     
-    <br><br><br>
-    <ol>
-    <p>Esperamos que disfrutes GAME & STEAM al poner a prueba tus habilidades de resolución de problemas. ¡Mucha Suerte!</p>
-    <a href="https://diegomanzanarez.github.io/">
-        <p class = "inden">  <input type="buttonT" value="JUGAR" /></p>
-    </a>
-</ol>
-      {% else %}
-
-      <button class="bstats"onclick="openForm()"><span> <b> GAME & STEAM </b> </span> </button>
-      <ol class="logul">
-        <p class = "logtitle"><b>Registro</b></p>
-    </ol>
-    
-    <br><br><br>
-      <ol>
-                   {% csrf_token %}
-         <form action="nuevo_usuario" class="formContainer" method = "POST">
-          <h2 class="formheader">Antes de comenzar, por favor introduce tu nombre, edad y género</h2>
-
-          <label for="Nombre">
-            <strong>Nombre</strong>
-          </label>
-          <input type="text" id="Nombre" placeholder="Nombre" name="Nombre" required>
-
-          <label for="Edad">
-            <strong>Edad</strong>
-          </label>
-          <input type="text" id="Edad" placeholder="Edad en años" name="Edad" required>
-
-          <label for="Genero">
-            <strong>Género</strong>
-          </label>
-          <input type="text" id="Genero" placeholder="Femenino o masculino" name="Genero" required>
-
-          <label for="Correo">
-            <strong>Correo</strong>
-          </label>
-          <input type="text" id="Correo" placeholder="Correo" name="Correo" required>
-
-
-
-		  <label for="Password">
-            <strong>Contrasena</strong>
-          </label>
-          <input type="password" id="Contrasena" placeholder="password" name="Contrasena" required>
-
-          <button type="submit" class="btn">Confirmar</button>
-          <button type="button" class="btn cancel" onclick="closeForm()">Cancelar</button>
-
-        </form>
-        </ol>
-
-        {% endif %}
-    
-
-
-    
-
-
-
-
-
-
-
-<br><br><br>
 
 <div class="stats">
     <!--<button class="bstats"onclick="location.href='http//13.65.45.197:8000/GAMESTEAM'"><span> <b> GAME & STEAM </b> </span> </button>-->

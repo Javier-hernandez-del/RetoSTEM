@@ -15,6 +15,7 @@ urlpatterns = [
     path('unity',views.unity, name = 'unity'),
     path('ejemploSQL', views.ejemploSQL, name='ejemploSQL'),
     path('accounts/register/', views.register, name='register'),
+    path('nomatch', views.nomatch, name='nomatch'),
     path('nuevo_usuario',views.nuevo_usuario, name = 'nuevo_usuario'),
     path('grafica',views.grafica, name = 'grafica'),
     path('barras',views.barras, name = 'barras'),

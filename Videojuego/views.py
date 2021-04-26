@@ -33,12 +33,16 @@ def grafica(request):
     return render(request,'grafica.html', {'losDatos':datos_formato})
 
 def nuevo_usuario(request):
+    resultados = Usuarios.objects.all()
     nombre = request.POST['Nombre']
     edad = request.POST['Edad']
     genero = request.POST['Genero']
     correo = request.POST['Correo']
     contrasena = request.POST['Contrasena']
     area_fav = request.POST['Area']
+    for i in resultados:
+        if(nombre == i.nombre):
+            return (render(request, 'nomatch.html'))
     #ultimo_inicio = datetime.datetime.now().date()
     #last = User.objects.get(username=nombre).last_login
     u1 = Usuarios(nombre=nombre, edad=edad, genero=genero, area_fav=area_fav,  password=contrasena)
@@ -55,6 +59,10 @@ def GAMESTEAM(request):
 def Estadisticas(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
     return render(request,'Estadisticas.html')
+
+def nomatch(request):
+    #return HttpResponse('<h1> Saludos desde Django</h1>')
+    return render(request,'nomatch.html')
 
 def EstadisticasGlobales(request):
     #return HttpResponse('<h1> Saludos desde Django</h1>')
@@ -215,7 +223,7 @@ def DatosFisica(request):
 
 @csrf_exempt
 def barras(request):
-    #Inica grafica de minutos jugados
+    #Inica grafica de tiempo jugado
     data = [['Nombre','Minutos jugados']]
    
     resultados = Usuarios.objects.all()
@@ -226,16 +234,23 @@ def barras(request):
 
     nombre = resultados[0].nombre
     #minutos_jugados = resultados[0].minutos_jugados
-    #for i in resultados:
-    #    x=i.nombre
-    #    y=i
-    #    data.append([x,y])
 
-    data.append(['Diego', 10])
+    for i in quimica:
+        segundos_q = i.tiempo_jugado_quimica
+    
+    for j in fisica:
+        segundos_f = j.tiempo_jugado_fisica
+    
+    for k in compu:
+        segundos_c = k.tiempo_jugado_compu
+    
+    data.append(['Quimica', segundos_q])
+    data.append(['Fisica', segundos_f])
+    data.append(['Compu', segundos_c])
     
     datos_formato=dumps(data)
     titulo='Indicadores STEM'
-    subtitulo='Minutos jugados'
+    subtitulo='Tiempo jugado'
     titulo_formato = dumps(titulo)
     subtitulo_formato =dumps(subtitulo)
     #Termina grafica de barras minutos jugados
@@ -323,7 +338,51 @@ def barras(request):
     #Termino de grafica de dona de genero
 
 
-    #Inicio de grafica de dona permanencia mayor a 10 min
+    #Inicio de grafica de dona fisica permanencia mayor a 10 min
+    data4=[['Genero','Número personas']]
+    genero2 = resultados[0].genero
+    hombres10=0
+    mujeres10=0
+
+    for i in fisica:
+        if(i.tiempo_jugado_fisica>10):
+            if(i.nombre.genero == 'Masculino'):
+                hombres10 += 1
+            else:
+                mujeres10 += 1
+
+    data4.append(['Hombres',hombres10])
+    data4.append(['Mujeres',mujeres10])
+    datos_formato4=dumps(data4)
+    titulo4='Indicadores STEM'
+    subtitulo4='Más de 10 min jugando'
+    titulo_formato4 = dumps(titulo4)
+    subtitulo_formato4 =dumps(subtitulo4)
+     #Fin de grafica de dona fisica permanencia mayor a 10 min
+
+    #Inicio de grafica de dona compu permanencia mayor a 10 min
+    data5=[['Genero','Número personas']]
+    genero2 = resultados[0].genero
+    hombres10=0
+    mujeres10=0
+
+    for i in compu:
+        if(i.tiempo_jugado_compu>10):
+            if(i.nombre.genero == 'Masculino'):
+                hombres10 += 1
+            else:
+                mujeres10 += 1
+
+    data5.append(['Hombres',hombres10])
+    data5.append(['Mujeres',mujeres10])
+    datos_formato5=dumps(data5)
+    titulo5='Indicadores STEM'
+    subtitulo5='Más de 10 min jugando'
+    titulo_formato5 = dumps(titulo5)
+    subtitulo_formato5 =dumps(subtitulo5)
+     #Fin de grafica de dona compu permanencia mayor a 10 min
+
+    #Inicio de grafica de dona compu permanencia mayor a 10 min
     data4=[['Genero','Número personas']]
     genero2 = resultados[0].genero
     hombres10=0
@@ -343,13 +402,15 @@ def barras(request):
     subtitulo4='Más de 10 min jugando'
     titulo_formato4 = dumps(titulo4)
     subtitulo_formato4 =dumps(subtitulo4)
+     #Fin de grafica de dona fisica permanencia mayor a 10 min
 
 
 
 
-    return render(request, 'barras.html',{'losDatos':datos_formato,'losDatos1':datos_formato1,'losDatos2':datos_formato2,'losDatos3':datos_formato3,'losDatos4':datos_formato4,
-    'titulo':titulo_formato,'titulo1':titulo_formato1,'titulo2':titulo_formato2,'titulo3':titulo_formato3,'titulo4':titulo_formato4,
-    'subtitulo':subtitulo_formato,'subtitulo1':subtitulo_formato1,'subtitulo2':subtitulo_formato2,'subtitulo3':subtitulo_formato3,'subtitulo4':subtitulo_formato4})
+
+    return render(request, 'barras.html',{'losDatos':datos_formato,'losDatos1':datos_formato1,'losDatos2':datos_formato2,'losDatos3':datos_formato3,'losDatos4':datos_formato4, 'losDatos5':datos_formato5,
+    'titulo':titulo_formato,'titulo1':titulo_formato1,'titulo2':titulo_formato2,'titulo3':titulo_formato3,'titulo4':titulo_formato4, 'titulo5':titulo_formato5,
+    'subtitulo':subtitulo_formato,'subtitulo1':subtitulo_formato1,'subtitulo2':subtitulo_formato2,'subtitulo3':subtitulo_formato3,'subtitulo4':subtitulo_formato4, 'subtitulo5':subtitulo_formato5})
     
 
 @login_required
