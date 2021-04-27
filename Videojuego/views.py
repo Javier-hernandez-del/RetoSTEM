@@ -249,15 +249,15 @@ def Estadisticas(request):
 
     for i in quimica:
         if(i.nombre.nombre==resultados_ind[0].nombre):
-            score_ind_Q += i.scoreQuimica
+            score_ind_Q = max(score_ind_Q,i.scoreQuimica)
 
     for q in fisica:
         if(q.nombre.nombre==resultados_ind[0].nombre):
-            score_ind_F += q.scoreFisica
+            score_ind_F = max(score_ind_F,q.scoreFisica)
 
     for f in compu:
         if(f.nombre.nombre==resultados_ind[0].nombre):
-            score_ind_C += f.scoreCompu
+            score_ind_C = max(score_ind_C,f.scoreCompu)
 
 
     data_ind.append(['Mezclas',score_ind_Q])
@@ -343,37 +343,52 @@ def Estadisticas(request):
 
     #Inicia grafica de barras max y min de minijuegos en cada juego
     data_ind3=[['Minijuego','Mínimo','Máximo']]
-    arr = [0,0,0,0,0]
 
-    minQuimica = 1000
-    maxQuimica = 0
-    minFisica = 1000
-    maxFisica = 0
-    minCompu = 1000
-    maxCompu = 0
+    minQuimicascore = 0
+    maxQuimicascore = 0
+    minFisicascore = 0
+    maxFisicascore = 0
+    minCompuscore = 0
+    maxCompuscore = 0
+    controlQ = True
+    controlF = True
+    controlC =True
+
+
 
     for n in quimica:
         if(n.nombre.nombre==resultados_ind[0].nombre):
         #arr=h.scoreFisica
-            minQuimica = min(minQuimica,n.tiempo_jugado_quimica)
-            maxQuimica = max(maxQuimica,n.tiempo_jugado_quimica)
+            if(controlQ):
+                controlQ = False
+                minQuimicascore = n.scoreQuimica
+            maxQuimicascore = max(maxQuimicascore,n.scoreQuimica)
+            minQuimicascore = min(minQuimicascore,n.scoreQuimica)
 
     for k in fisica:
         if(k.nombre.nombre==resultados_ind[0].nombre):
+            if(controlF):
+                controlF = False
+                minFisicascore = k.scoreFisica
+            maxFisicascore = max(maxFisicascore,k.scoreFisica)
+            minFisicascore = min(minFisicascore,k.scoreFisica)
+            
         #arr=h.scoreFisica
-            minFisica = min(minFisica,k.tiempo_jugado_fisica)
-            maxFisica = max(maxFisica,k.tiempo_jugado_fisica)
 
     for t in compu:
         if(t.nombre.nombre==resultados_ind[0].nombre):
+            if(controlC):
+                controlC = False
+                minCompuscore = t.scoreCompu
+            maxCompuscore = max(maxCompuscore,t.scoreCompu)
+            minCompuscore= min(minCompuscore,t.scoreCompu)
+
+
         #arr=h.scoreFisica
-            minCompu = min(minCompu,t.tiempo_jugado_compu)
-            maxCompu = max(maxCompu,t.tiempo_jugado_compu)
 
-
-    data_ind3.append(['Mezclas',minQuimica, maxQuimica])
-    data_ind3.append(['Math Runner',minCompu, maxCompu])
-    data_ind3.append(['Básquetbol',minFisica,maxFisica])
+    data_ind3.append(['Mezclas',minQuimicascore, maxQuimicascore])
+    data_ind3.append(['Math Runner',minCompuscore, maxCompuscore])
+    data_ind3.append(['Básquetbol',minFisicascore,maxFisicascore])
 
     datos_formato_ind3=dumps(data_ind3)
     titulo_ind3='Indicadores STEM'
@@ -476,34 +491,53 @@ def Estadisticas(request):
     data_ind6=[[' ','Tiempo','Tiempo\nGlobal']]
     arr = [0,0,0,0,0]
 
-    tiempoQ = 1000
-    tiempoF = 1000
-    tiempoC = 1000
-    topTiempoQ= 1000
-    topTiempoF = 1000
-    topTiempoC = 1000
+    minQuimica = 0
+    minFisica = 0
+    minCompu = 0
+    controlQ = True
+    controlF = True
+    controlC =True
+    quimica_global = 1000
+    fisica_global = 1000
+    compu_global = 1000
 
 
-    for r in quimica:
-        topTiempoQ = min(topTiempoQ,r.tiempo_jugado_quimica)
-        if(r.nombre.nombre==resultados_ind[0].nombre):
-            #score_Q += g.scoreQuimica
-            tiempoQ = min(tiempoQ,r.tiempo_jugado_quimica)
+    for n in quimica:
+        if(n.nombre.nombre==resultados_ind[0].nombre):
+        #arr=h.scoreFisica
+            if(controlQ):
+                controlQ = False
+                minQuimica = n.tiempo_jugado_quimica
+            minQuimica = min(minQuimica,n.tiempo_jugado_quimica)
+        quimica_global = min(quimica_global,n.tiempo_jugado_quimica)
 
 
-    for v in fisica:
-        topTiempoF = min(topTiempoF,v.tiempo_jugado_fisica)
-        if(v.nombre.nombre==resultados_ind[0].nombre):
-            tiempoF = min(tiempoF,v.tiempo_jugado_fisica)
+    for k in fisica:
+        if(k.nombre.nombre==resultados_ind[0].nombre):
+            if(controlF):
+                controlF = False
+                minFisica = k.tiempo_jugado_fisica
+            minFisica = min(minFisica,k.tiempo_jugado_fisica)
+        fisica_global = min(fisica_global,k.tiempo_jugado_fisica)
 
-    for u in compu:
-        topTiempoC = min(topTiempoC,u.tiempo_jugado_compu)
-        if(u.nombre.nombre==resultados_ind[0].nombre):
-            tiempoC = min(tiempoC,u.tiempo_jugado_compu)
 
-    data_ind6.append(['Mezclas',tiempoQ, topTiempoQ])
-    data_ind6.append(['Math Runner',tiempoC, topTiempoC])
-    data_ind6.append(['Básquetbol',tiempoF,topTiempoF])
+
+        #arr=h.scoreFisica
+
+    for t in compu:
+        if(t.nombre.nombre==resultados_ind[0].nombre):
+            if(controlC):
+                controlC = False
+                minCompu = t.tiempo_jugado_compu
+            minCompu = min(minCompu,t.tiempo_jugado_compu)
+        compu_global = min(compu_global,t.tiempo_jugado_compu)
+
+
+        #arr=h.scoreFisica
+
+    data_ind6.append(['Mezclas',minQuimica, quimica_global])
+    data_ind6.append(['Math Runner',minCompu, compu_global])
+    data_ind6.append(['Básquetbol',minFisica,fisica_global])
 
     datos_formato_ind6=dumps(data_ind6)
     titulo_ind6='Indicadores STEM'
@@ -554,11 +588,52 @@ def Estadisticas(request):
     subtitulo_formato_ind7 =dumps(subtitulo_ind7)
 
     #Termina grafica de comparacion peor tiempo vs peor tiempo del jugador
+
+
+    #Inicia grafica de juego favorito
+
+    data_ind8=[['Minijuego','Tiempo']]
+
+    Tfisica = 0
+    Tquimica = 0
+    Tcompu = 0
+ 
+
+    for n in quimica:
+        if(n.nombre.nombre==resultados_ind[0].nombre):
+            Tquimica += n.tiempo_jugado_quimica
+
+
+    for k in fisica:
+        if(k.nombre.nombre==resultados_ind[0].nombre):
+            Tfisica += k.tiempo_jugado_fisica
+ 
+            
+        #arr=h.scoreFisica
+
+    for t in compu:
+        if(t.nombre.nombre==resultados_ind[0].nombre):
+            Tcompu += t.tiempo_jugado_compu
+
+
+
+        #arr=h.scoreFisica
+
+    data_ind8.append(['Mezclas: ',Tquimica])
+    data_ind8.append(['MathCube: ',Tcompu])
+    data_ind8.append(['Básquetbol: ',Tfisica])
+    datos_formato_ind8=dumps(data_ind8)
+    titulo_ind8='Indicadores STEM'
+    subtitulo_ind8='Comparacion tiempoGlobal y tiempo del jugador'
+    titulo_formato_ind8 = dumps(titulo_ind8)
+    subtitulo_formato_ind8 =dumps(subtitulo_ind8)
+
+
     #return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login})
     return render(request, 'Estadisticas.html',{"nombre_ind":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login, 
-    'indDatos':datos_formato_ind,'indDatos1':datos_formato_ind1,'indDatos2':datos_formato_ind2,'indDatos3':datos_formato_ind3,'indDatos4':datos_formato_ind4,'indDatos5':datos_formato_ind5,'indDatos6':datos_formato_ind6,'indDatos7':datos_formato_ind7,
-    'titulo_ind':titulo_formato_ind,'titulo_ind1':titulo_formato_ind1,'titulo_ind2':titulo_formato_ind2,'titulo_ind3':titulo_formato_ind3,'titulo_ind4':titulo_formato_ind4,'tituto_ind5':titulo_formato_ind5,'titulo_ind6':titulo_formato_ind6,'titulo_ind7':titulo_formato_ind7,
-    'subtitulo_ind':subtitulo_formato_ind,'subtitulo_ind1':subtitulo_formato_ind1,'subtitulo_ind2':subtitulo_formato_ind2,'subtitulo_ind3':subtitulo_formato_ind3,'subtitulo_ind4':subtitulo_formato_ind4,'subtitulo_ind5':subtitulo_formato_ind5,'subtitulo_ind6':subtitulo_formato_ind6,'subtitulo_ind7':subtitulo_formato_ind7})
+    'indDatos':datos_formato_ind,'indDatos1':datos_formato_ind1,'indDatos2':datos_formato_ind2,'indDatos3':datos_formato_ind3,'indDatos4':datos_formato_ind4,'indDatos5':datos_formato_ind5,'indDatos6':datos_formato_ind6,'indDatos7':datos_formato_ind7, 'indDatos8':datos_formato_ind8,
+    'titulo_ind':titulo_formato_ind,'titulo_ind1':titulo_formato_ind1,'titulo_ind2':titulo_formato_ind2,'titulo_ind3':titulo_formato_ind3,'titulo_ind4':titulo_formato_ind4,'tituto_ind5':titulo_formato_ind5,'titulo_ind6':titulo_formato_ind6,'titulo_ind7':titulo_formato_ind7, 'titulo_ind8':titulo_formato_ind8,
+    'subtitulo_ind':subtitulo_formato_ind,'subtitulo_ind1':subtitulo_formato_ind1,'subtitulo_ind2':subtitulo_formato_ind2,'subtitulo_ind3':subtitulo_formato_ind3,'subtitulo_ind4':subtitulo_formato_ind4,'subtitulo_ind5':subtitulo_formato_ind5,'subtitulo_ind6':subtitulo_formato_ind6,'subtitulo_ind7':subtitulo_formato_ind7, 'subtitulo_ind8':subtitulo_formato_ind8})
 
 
 

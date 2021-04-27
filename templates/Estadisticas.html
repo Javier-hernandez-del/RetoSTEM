@@ -21,6 +21,7 @@
       google.charts.setOnLoadCallback(drawVisualization3);
       google.charts.setOnLoadCallback(drawVisualization4);
       google.charts.setOnLoadCallback(drawVisualization5);
+      google.charts.setOnLoadCallback(drawChartarea);
 
 
       function drawChart() {
@@ -358,6 +359,34 @@
 
 
 
+      function drawChartarea() {
+        var data = google.visualization.arrayToDataTable({{indDatos8|safe}});
+    
+    
+        var options = {
+          backgroundColor: 'transparent',
+          colors: ['orange', 'black', 'blue'],
+          legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+          chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+          is3D: true,
+        };
+    
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_2'));
+        chart.draw(data, options);
+      }
+
+
+
+
+
 
 
     </script>
@@ -470,7 +499,8 @@
 	  <div class= "column2">
 	  	<h2 class="weird"><u>Juego Favorito</u></h2>
 
-        <div id="piechart_3dUser" style="width: 900px; height: 453px;"></div>
+        <!--<div id="piechart_3dUser" style="width: 900px; height: 453px;"></div>-->
+        <div id="piechart_3d_2" style="width: 1050px; height: 453px;"></div>
 
 	  		
 
@@ -519,7 +549,7 @@
 
     <div class= "column4">
 
-      <h2><u>Comparación score vs top score global</u></h2>
+      <h2><u>Comparación top score vs top score global</u></h2>
 
           <!--<div id="donutchartUser" style="width: 900px; height: 446px;"></div>-->
           <div id="chart_div3" style="width: 850px; height: 500px;"></div>
@@ -542,7 +572,7 @@
 
   <div class= "column4">
 
-    <h2><u>Comparación tiempo total jugado vs tiempo total global</u></h2>
+    <h2><u>Comparación menor tiempo jugado vs menor tiempo global</u></h2>
 
         <!--<div id="donutchartUser" style="width: 900px; height: 446px;"></div>-->
         <div id="chart_div4" style="width: 850px; height: 500px;"></div>
