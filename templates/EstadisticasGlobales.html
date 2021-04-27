@@ -12,7 +12,7 @@
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-          google.charts.load('current', {'packages':['bar','corechart']});
+          google.charts.load('44', {'packages':['bar','corechart']});
       
           google.charts.setOnLoadCallback(drawChart);
           
@@ -29,7 +29,7 @@
           google.charts.setOnLoadCallback(drawVisualization);
     
     
-          function drawChart() {
+          /*function drawChart() {
             var data = google.visualization.arrayToDataTable({{losDatos|safe}});
     
             var options = {
@@ -41,7 +41,31 @@
     
             chart.draw(data, google.charts.Bar.convertOptions(options));
             
-          }
+          }*/
+
+
+          function drawChart() {
+      var data = google.visualization.arrayToDataTable({{losDatos|safe}});
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        backgroundColor: 'transparent',
+        width: 850,
+        height: 450,
+        bar: {groupWidth: "95%"},
+        chartArea:  {left:50,top:30,width:'74%',height:'73%'},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("barchart_material"));
+      chart.draw(view, options);
+  }
     
     
         function drawChart1() {
@@ -62,14 +86,43 @@
       function drawChart2() {
             var data = google.visualization.arrayToDataTable({{losDatos2|safe}});
     
-            var options = {
+            /*var options = {
                 backgroundColor: 'transparent',
-              bars: 'vertical' // Required for Material Bar Charts.
-            };
+              bars: 'vertical', // Required for Material Bar Charts.
+              colors: ['red', 'blue', 'yellow'],
+            };*/
+
+            var options = {
+                legend: {
+        position: "none"
+    },
+    hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 20,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 20,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['yellow'],
+      is3D:true
+};
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material2'));
     
             chart.draw(data, google.charts.Bar.convertOptions(options));
+           
             
           }
     
@@ -80,6 +133,15 @@
     
         var options = {
           backgroundColor: 'transparent',
+          legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
           chartArea:  {left:57,top:55,width:'73%',height:'72%'},
           is3D: true,
         };
@@ -94,6 +156,16 @@
     
             var options = {
             backgroundColor: 'transparent',
+            colors: ['lightblue', 'red'], 
+            legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
             chartArea:  {left:57,top:55,width:'73%',height:'72%'},
               pieHole: 0.4,
             };
@@ -107,6 +179,16 @@
     
             var options = {
             backgroundColor: 'transparent',
+            colors: ['black', 'grey'], 
+            legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
             chartArea:  {left:57,top:55,width:'73%',height:'72%'},
               pieHole: 0.4,
             };
@@ -120,6 +202,16 @@
     
             var options = {
             backgroundColor: 'transparent',
+            colors: ['purple', 'orange'], 
+            legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
             chartArea:  {left:57,top:55,width:'73%',height:'72%'},
               pieHole: 0.4,
             };
@@ -134,7 +226,31 @@
     
             var options = {
               backgroundColor: 'transparent',
-              bars: 'vertical' // Required for Material Bar Charts.
+              bars: 'vertical', 
+              bars: 'vertical', 
+              legend: {
+        position: "none"
+    },
+    hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['brown'], 
             };
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material3'));
@@ -147,8 +263,32 @@
             var data = google.visualization.arrayToDataTable({{losDatos7|safe}});
     
             var options = {
-                backgroundColor: 'transparent',
-              bars: 'vertical' // Required for Material Bar Charts.
+                backgroundColor: {fill:'transparent'},
+              bars: 'vertical',
+
+              legend: {
+        position: "none"
+    },
+    hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['grey'], // Required for Material Bar Charts.
             };
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material4'));
@@ -162,7 +302,31 @@
     
             var options = {
                 backgroundColor: 'transparent',
-              bars: 'vertical' // Required for Material Bar Charts.
+              bars: 'vertical', 
+              legend: {
+        position: "none"
+    },
+    hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['red'],
+      is3D:true // Required for Material Bar Charts.
             };
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material5'));
@@ -176,7 +340,31 @@
     
             var options = {
                 backgroundColor: 'transparent',
-              bars: 'vertical' // Required for Material Bar Charts.
+              bars: 'vertical', 
+              bars: 'vertical', 
+              legend: {
+        position: "none"
+    },
+    hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['purple'], // Required for Material Bar Charts.
             };
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material6'));
@@ -191,6 +379,35 @@
             var data = google.visualization.arrayToDataTable({{losDatos10|safe}});
             var options = {
               backgroundColor: 'transparent',
+              legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+              hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 20,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 20,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['white', 'black'],
               chartArea:  {left:50,top:30,width:'74%',height:'73%'},
               //vAxis: {title: 'Intentos'},
               //hAxis: {title: 'Día'},
@@ -222,10 +439,74 @@
 	</header>
 
     <br>
+    <br>
+
+    <header class ="user">
+        <h1 class="usertitle">Estadísticas de Puntuación</h1>
+      </header>
+    
+    <section>
+    
+      <body>
+    
+        <div class="row">
+        
+        <div class="column1">
+    
+          <h2 class="weird"><u>Top scores globales</u></h2>
+    
+          <!--<div id="columnchart_valuesTopScores" style="width: 700px; height: 450px;"></div>-->
+          <div id="barchart_material2" style="width: 810px; height: 500px;"></div>
+          
+    
+        </div>
+    
+    
+        
+        <div class= "column2">
+          <h2 class="weird"><u>Top scores minijuego Mezclas</u></h2>
+    
+           <!-- <div id="table_div" style="width: 593px; height: 450px;"></div> -->
+           <div id="barchart_material5" style="width: 700px; height: 500px;"></div>
+    
+    
+        </div>
+        
+      </div>
+
+      <nobr>
+        <div class="row">
+        <div class="column32">
+          
+          <h2 class= "weird"><u>Top scores minijuego Math Runner</u></h2>
+            <!--<div id="columnchart_values" style="width: 700px; height: 450px;"></div>-->
+            <div id="barchart_material6" style="width: 810px; height: 500px;"></div>
+    
+        </div>
+    
+        <div class= "column42">
+    
+          <h2><u>Top scores minijuego Básquetbol Parabólico</u></h2>
+    
+              <!--<div id="donutchart" style="width: 900px; height: 450px;"></div>-->
+              <div id="barchart_material4" style="width: 700px; height: 500px;"></div>
+              
+        </div>
+      </div>
+    </nobr>
+
+    <br>
+    <br>
+    <br>
+
+
+
+
+
 
 
   <header class ="user2">
-    <h1 class="usertitle">Estadísticas globales</h1>
+    <h1 class="usertitle">Indicadores globales</h1>
   </header>
 
 <section>
@@ -236,7 +517,7 @@
     
     <div class="column1">
 
-      <h2 class="weird"><u>Top scores globales</u></h2>
+      <h2 class="weird"><u>Área favoritas de los usuarios</u></h2>
 
       <!--<div id="columnchart_valuesTopScores" style="width: 700px; height: 450px;"></div>-->
       <div id="barchart_material2" style="width: 900px; height: 500px;"></div>
@@ -247,10 +528,10 @@
 
     
     <div class= "column2">
-      <h2 class="weird"><u>Minutos Jugados Totales</u></h2>
+      <h2 class="weird"><u>Segundos Jugados Totales</u></h2>
 
        <!-- <div id="table_div" style="width: 593px; height: 450px;"></div> -->
-       <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+       <div id="barchart_material" style="width: 850x; height: 500px;"></div>
 
 
     </div>
@@ -265,7 +546,7 @@
       
       <h2 class= "weird"><u>Número de usuarios por género</u></h2>
        <!-- <p id="curve_chart" style="width: 850px; height: 454px"></p> -->
-       <p id="donutchart" style="width: 900px; height: 500px;"></p>
+       <p id="donutchart" style="width: 900px; height: 504px;"></p>
 
     </div>
 
@@ -308,16 +589,16 @@
 
 <nobr>
     <div class="row">
-    <div class="column3">
+    <div class="column32">
       
-      <h2 class= "weird"><u>Tiempo promedio de actividad</u></h2>
+      <h2 class= "weird"><u>Tiempo promedio de actividad por minijuego</u></h2>
         <!--<div id="columnchart_values" style="width: 700px; height: 450px;"></div>-->
-        <div id="barchart_material3" style="width: 900px; height: 500px;"></div>
+        <div id="barchart_material3" style="width: 810px; height: 500px;"></div>
     </div>
 
-    <div class= "column4">
+    <div class= "column42">
 
-      <h2><u>Usarios que han completado el juego en menos de 100 segundos</u></h2>
+      <h2><u>Género que ha completado el juego en menos de 100 segundos</u></h2>
 
           <!--<div id="donutchart" style="width: 900px; height: 450px;"></div>-->
           <div id="donutchart1" style="width: 900px; height: 500px;"></div>
@@ -325,40 +606,6 @@
     </div>
   </div>
 </nobr>
-
-
-
-
-<nobr>
-    <div class="row">
-    <div class="column32">
-      
-      <h2 class= "weird"><u>Tiempo promedio de actividad</u></h2>
-        <!--<div id="columnchart_values" style="width: 700px; height: 450px;"></div>-->
-        <div id="barchart_material3" style="width: 900px; height: 500px;"></div>
-
-    </div>
-
-    <div class= "column42">
-
-      <h2><u>Mayor permanencia en línea por género</u></h2>
-
-          <!--<div id="donutchart" style="width: 900px; height: 450px;"></div>-->
-          <div id="donutchart2" style="width: 900px; height: 500px;"></div>
-
-    </div>
-  </div>
-</nobr>
-
-
-
-
-
-
-
-
-
-
 
 			<hr size=5 width="100%" color="black">
 

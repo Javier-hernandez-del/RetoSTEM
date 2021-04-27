@@ -18,7 +18,6 @@ urlpatterns = [
     path('nomatch', views.nomatch, name='nomatch'),
     path('nuevo_usuario',views.nuevo_usuario, name = 'nuevo_usuario'),
     path('grafica',views.grafica, name = 'grafica'),
-    path('barras',views.barras, name = 'barras'),
     path('login_unity',views.login_unity, name = 'login_unity'),
     path('buscaJugadorBodyQuimca',views.buscaJugadorBodyQuimca, name = 'buscaJugadorBodyQuimca'),
     path('DatosFisica',views.DatosFisica, name = 'DatosFisica'),

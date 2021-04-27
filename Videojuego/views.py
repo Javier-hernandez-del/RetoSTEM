@@ -213,355 +213,6 @@ def DatosFisica(request):
     retorno = {"EnvioConExito":True}
     return JsonResponse(retorno)
 
-
-@csrf_exempt
-def barras(request):
- #Inica grafica de tiempo jugado
-    data = [['Nombre','Minutos jugados']]
-   
-    resultados = Usuarios.objects.all()
-    quimica = MinijuegoQuimica.objects.all()
-    fisica = MinijuegoFisica.objects.all()
-    compu = MinijuegoCompu.objects.all()
-
-
-    nombre = resultados[0].nombre
-    #minutos_jugados = resultados[0].minutos_jugados
-
-    for i in quimica:
-        segundos_q = i.tiempo_jugado_quimica
-    
-    for j in fisica:
-        segundos_f = j.tiempo_jugado_fisica
-    
-    for k in compu:
-        segundos_c = k.tiempo_jugado_compu
-    
-    data.append(['Quimica', segundos_q])
-    data.append(['Fisica', segundos_f])
-    data.append(['Compu', segundos_c])
-    
-    datos_formato=dumps(data)
-    titulo='Indicadores STEM'
-    subtitulo='Tiempo jugado'
-    titulo_formato = dumps(titulo)
-    subtitulo_formato =dumps(subtitulo)
-    #Termina grafica de barras minutos jugados
-
-
-    #Inicia grafica de pastel de edad
-    data1=[['Edad','Número personas']]
-    edad = resultados[0].edad
-    menores_12=0
-    entre_1218=0
-    mayores18 =0
-    for i in resultados:
-        if(i.edad < 12):
-            menores_12 += 1
-        elif(i.edad > 12 and i.edad < 18):
-            entre_1218 += 1
-        else:
-            mayores18 += 1
-    data1.append(['<12',menores_12])
-    data1.append(['entre 12 y 18',entre_1218])
-    data1.append(['mayores 18',mayores18])
-    datos_formato1=dumps(data1)
-    titulo1='Indicadores STEM'
-    subtitulo1='Edades'
-    titulo_formato1 = dumps(titulo1)
-    subtitulo_formato1 =dumps(subtitulo1)
-    #Termina grafica de pastel de edades
-    
-    #Inicia grafica de barras topscore de cada juego
-    data2 = [['Nombre','Score']]
-   
-    resultados = Usuarios.objects.all()
-    nombre = resultados[0].nombre
-    #scores=quimica[0].scoreQuimica
-    nombre1 = quimica[0].nombre
-    topQ= 0
-    topF = 0
-    topC = 0
-    for i in quimica:
-        topQ = max(topQ,i.scoreQuimica)
-
-    for k in fisica:
-        topF = max(topF,k.scoreFisica)
-        
-    for l in compu:
-        topC = max(topC,l.scoreCompu)
-
-    data2.append(['Mezclas',topQ])
-    data2.append(['Basquetbal',topF])
-    data2.append(['MathCube',topC])
-
-    #topQ = max()
-    #topF = max(resultados.scoreFisica)
-    #topC = max(resultados.scoreCompu)
-        
-    #data2.append(['Mezclas',topQ])
-    #data2.append(['MathCube',topC])
-    #data2.append(['Basquet',topF])
-    datos_formato2=dumps(data2)
-    titulo2='Indicadores STEM'
-    subtitulo2='Score'
-    titulo_formato2 = dumps(titulo2)
-    subtitulo_formato2 =dumps(subtitulo2)
-
-    #Finn de grafica de barras topscore cada juego
-
-
-    #Inicio de grafica de dona de genero
-    data3=[['Genero','Número personas']]
-    genero = resultados[0].genero
-    hombres=0
-    mujeres=0
-
-    for i in resultados:
-        if(i.genero == 'Masculino'):
-            hombres += 1
-        else:
-            mujeres += 1
-
-    data3.append(['Hombres',hombres])
-    data3.append(['Mujeres',mujeres])
-    datos_formato3=dumps(data3)
-    titulo3='Indicadores STEM'
-    subtitulo3='Generos'
-    titulo_formato3 = dumps(titulo3)
-    subtitulo_formato3 =dumps(subtitulo3)
-
-    #Termino de grafica de dona de genero
-
-
-    #Inicio de grafica de dona permanencia mayor a 10 min en juego fisica
-    data4=[['Genero','Número personas']]
-    genero2 = resultados[0].genero
-    hombres10=0
-    mujeres10=0
-    for i in quimica:
-        if(i.tiempo_jugado_quimica<60):
-            if(i.nombre.genero == 'Masculino'):
-                hombres10 += 1
-            else:
-                mujeres10 += 1
-
-    for l in fisica:
-        if(l.tiempo_jugado_fisica<60):
-            if(l.nombre.genero == 'Masculino'):
-                hombres10 += 1
-            else:
-                mujeres10 += 1
-
-    for r in compu:
-        if(r.tiempo_jugado_compu<60):
-            if(r.nombre.genero == 'Masculino'):
-                hombres10 += 1
-            else:
-                mujeres10 += 1
-
-
-    data4.append(['Hombres',hombres10])
-    data4.append(['Mujeres',mujeres10])
-    datos_formato4=dumps(data4)
-    titulo4='Indicadores STEM'
-    subtitulo4='Más de 10 min jugando'
-    titulo_formato4 = dumps(titulo4)
-    subtitulo_formato4 =dumps(subtitulo4)
-
-    #Termina grafica de dona permanencia mayor a 10 min en juego fisica
-
-
-    #Inicia grafica de dona permanencia total por genero en el juego
-    data5=[['Genero','Número personas']]
-    genero3 = resultados[0].genero
-    tiempoTHombres= 0
-    tiempoTMujeres = 0
-
-    for q in quimica:
-        if(q.nombre.genero == 'Masculino'):
-            tiempoTHombres = tiempoTHombres + q.tiempo_jugado_quimica
-        else:
-            tiempoTMujeres= tiempoTMujeres + q.tiempo_jugado_quimica
-
-    for w in fisica:
-        if(w.nombre.genero == 'Masculino'):
-            tiempoTHombres = tiempoTHombres + w.tiempo_jugado_fisica
-        else:
-            tiempoTMujeres= tiempoTMujeres + w.tiempo_jugado_fisica
-
-    for e in compu:
-        if(e.nombre.genero == 'Masculino'):
-            tiempoTHombres = tiempoTHombres + e.tiempo_jugado_compu
-        else:
-            tiempoTMujeres= tiempoTMujeres + e.tiempo_jugado_compu
-
-    data5.append(['Permanencia en linea H',tiempoTHombres])
-    data5.append(['Permanencia en linea M',tiempoTMujeres])
-    datos_formato5=dumps(data5)
-    titulo5='Indicadores STEM'
-    subtitulo5='Permanencia en linea por genero'
-    titulo_formato5 = dumps(titulo5)
-    subtitulo_formato5 =dumps(subtitulo5)
-
-    #Termina grafica de dona permanencia total por genero en el juego
-
-
-    #Empieza grafica de barras de promedio de tiempo por juego
-    data6=[['Genero','Tiempo']]
-    genero4 = resultados[0].genero
-    tiempoQ= 0
-    tiempoF= 0
-    tiempoC = 0
-    tiempoT = 0
-    contQ=0
-    contF=0
-    contC=0
-  
-
-    for t in quimica:
-        tiempoQ = t.tiempo_jugado_quimica + tiempoQ
-        contQ += 1
-    tiempoQ = tiempoQ /contQ
-
-    for y in fisica:
-        tiempoF = y.tiempo_jugado_fisica + tiempoF
-        contF += 1
-    tiempoF = tiempoF /contF
-
-    for o in compu:
-        tiempoC = o.tiempo_jugado_compu + tiempoC
-        contC += 1
-    tiempoC = tiempoC /contC
-
-    data6.append(['Quimica',tiempoQ])
-    data6.append(['Fisica',tiempoF])
-    data6.append(['Compu',tiempoC])
-    datos_formato6=dumps(data6)
-    titulo6='Indicadores STEM'
-    subtitulo6='Tiempo promedio por juego'
-    titulo_formato6 = dumps(titulo6)
-    subtitulo_formato6 =dumps(subtitulo6)
-
-    #termina grafica de barras de promedio de tiempo por juego
-
-
-    #Inicia grafica de barras de top 5 scores juego fisica
-    data7=[['Lugar','Topscores']]
-    arr = [0,0,0,0,0]
-
-    for h in fisica:
-        #arr=h.scoreFisica
-        arr.append(h.scoreFisica)
-    srt = sorted(arr, reverse=True)
-
-
-    data7.append(['Puesto 1: ',srt[0]])
-    data7.append(['Puesto 2: ',srt[1]])
-    data7.append(['Puesto 3: ',srt[2]])
-    data7.append(['Puesto 4: ',srt[3]])
-    data7.append(['Puesto 5: ',srt[4]])
-    datos_formato7=dumps(data7)
-    titulo7='Indicadores STEM'
-    subtitulo7='Tiempo promedio por juego'
-    titulo_formato7 = dumps(titulo7)
-    subtitulo_formato7 =dumps(subtitulo7)
-
-    #Termina grafica de barras de top 5 score juego fisica
-
-    #Inica grafica de barras de top 5 score juego quimica
-    data8=[['Lugar','Topscores']]
-    arr = [0,0,0,0,0]
-
-
-    for f in quimica:
-        #arr=h.scoreFisica
-        arr.append(f.scoreQuimica)
-    srt = sorted(arr, reverse=True)
-
-
-    data8.append(['Puesto 1: ',srt[0]])
-    data8.append(['Puesto 2: ',srt[1]])
-    data8.append(['Puesto 3: ',srt[2]])
-    data8.append(['Puesto 4: ',srt[3]])
-    data8.append(['Puesto 5: ',srt[4]])
-    datos_formato8=dumps(data8)
-    titulo8='Indicadores STEM'
-    subtitulo8='Tiempo promedio por juego'
-    titulo_formato8 = dumps(titulo8)
-    subtitulo_formato8 =dumps(subtitulo8)
-
-    #Termina grafica de barras de top 5 score juego quimica
-
-
-    #Inica grafica de barras de top 5 score juego compu
-
-    data9=[['Lugar','Topscores']]
-    arr = [0,0,0,0,0]
-
-
-    for c in compu:
-        #arr=h.scoreFisica
-        arr.append(c.scoreCompu)
-    srt = sorted(arr, reverse=True)
-
-
-    data9.append(['Puesto 1: ',srt[0]])
-    data9.append(['Puesto 2: ',srt[1]])
-    data9.append(['Puesto 3: ',srt[2]])
-    data9.append(['Puesto 4: ',srt[3]])
-    data9.append(['Puesto 5: ',srt[4]])
-    datos_formato9=dumps(data9)
-    titulo9='Indicadores STEM'
-    subtitulo9='Tiempo promedio por juego'
-    titulo_formato9 = dumps(titulo9)
-    subtitulo_formato9 =dumps(subtitulo9)
-
-    #Termina grafica de barras de top5  score juego compu
-
-    #Inicia grafica de barras de max y min de tiempos
-    data10=[['Minijuego','Min','Max']]
-    arr = [0,0,0,0,0]
-
-    minQuimica = 1000
-    maxQuimica = 0
-    minFisica = 1000
-    maxFisica = 0
-    minCompu = 1000
-    maxCompu = 0
-
-    for n in quimica:
-        #arr=h.scoreFisica
-        minQuimica = min(minQuimica,n.tiempo_jugado_quimica)
-        maxQuimica = max(maxQuimica,n.tiempo_jugado_quimica)
-
-    for k in fisica:
-        #arr=h.scoreFisica
-        minFisica = min(minFisica,k.tiempo_jugado_fisica)
-        maxFisica = max(maxFisica,k.tiempo_jugado_fisica)
-
-    for t in compu:
-        #arr=h.scoreFisica
-        minCompu = min(minCompu,t.tiempo_jugado_compu)
-        maxCompu = max(maxCompu,t.tiempo_jugado_compu)
-
-
-    data10.append(['Mezclas: ',minQuimica, maxQuimica])
-    data10.append(['MathCube: ',minCompu, maxCompu])
-    data10.append(['Básquetbol: ',minFisica,maxFisica])
-
-    datos_formato10=dumps(data10)
-    titulo10='Indicadores STEM'
-    subtitulo10='Tiempo promedio por juego'
-    titulo_formato10 = dumps(titulo10)
-    subtitulo_formato10 =dumps(subtitulo10)
-
-    return render(request, 'barras.html',{'losDatos':datos_formato,'losDatos1':datos_formato1,'losDatos2':datos_formato2,'losDatos3':datos_formato3,'losDatos4':datos_formato4,'losDatos5':datos_formato5,'losDatos6':datos_formato6,'losDatos7':datos_formato7,'losDatos8':datos_formato8,'losDatos9':datos_formato9,'losDatos10':datos_formato10,
-    'titulo':titulo_formato,'titulo1':titulo_formato1,'titulo2':titulo_formato2,'titulo3':titulo_formato3,'titulo4':titulo_formato4,'titulo5':titulo_formato5,'titulo6':titulo_formato6,'titulo7':titulo_formato7,'titulo8':titulo_formato8,'titulo9':titulo_formato9,'titulo10':titulo_formato10,
-    'subtitulo':subtitulo_formato,'subtitulo1':subtitulo_formato1,'subtitulo2':subtitulo_formato2,'subtitulo3':subtitulo_formato3,'subtitulo4':subtitulo_formato4,'subtitulo5':subtitulo_formato5,'subtitulo6':subtitulo_formato6,'subtitulo7':subtitulo_formato7,'subtitulo8':subtitulo_formato8,'subtitulo9':subtitulo_formato9,'subtitulo10':subtitulo_formato10})
-
-    
-
 @login_required
 def Estadisticas(request):
     usuario = request.user
@@ -570,6 +221,8 @@ def Estadisticas(request):
     edad = resultados[0].edad
     genero = resultados[0].genero
     area_fav = resultados[0].area_fav
+    usx = User.objects.get(username=usuario)
+    last_login = usx.last_login
     #xuser = Usuarios.objects.get(nombre=usuario)
     #last_login = xuser.last_login
     if area_fav == "Quimica":
@@ -578,11 +231,11 @@ def Estadisticas(request):
         carreras = "Mecatrónica, Astrónomo, Robótica"
     else:
         carreras = "ITC, Ciberseguridad, Videojuegos"
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras})
+    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login})
 
 def EstadisticasGlobales(request):
     #Inica grafica de tiempo jugado
-    data = [['Nombre','Minutos jugados']]
+    data = [['','', '{}']]
    
     resultados = Usuarios.objects.all()
     quimica = MinijuegoQuimica.objects.all()
@@ -602,9 +255,9 @@ def EstadisticasGlobales(request):
     for k in compu:
         segundos_c = k.tiempo_jugado_compu
     
-    data.append(['Quimica', segundos_q])
-    data.append(['Fisica', segundos_f])
-    data.append(['Compu', segundos_c])
+    data.append(['Quimica', segundos_q, 'color: #b0120a'])
+    data.append(['Fisica', segundos_f, 'color: #004411'])
+    data.append(['Compu', segundos_c, 'color: #ffab91'])
     
     datos_formato=dumps(data)
     titulo='Indicadores STEM'
@@ -638,7 +291,7 @@ def EstadisticasGlobales(request):
     #Termina grafica de pastel de edades
     
     #Inicia grafica de barras topscore de cada juego
-    data2 = [['Nombre','Score']]
+    data2 = [[' ','Score']]
    
     resultados = Usuarios.objects.all()
     nombre = resultados[0].nombre
@@ -657,8 +310,8 @@ def EstadisticasGlobales(request):
         topC = max(topC,l.scoreCompu)
 
     data2.append(['Mezclas',topQ])
-    data2.append(['Basquetbal',topF])
-    data2.append(['MathCube',topC])
+    data2.append(['Math Runner',topC])
+    data2.append(['Básquetbol',topF])
 
     #topQ = max()
     #topF = max(resultados.scoreFisica)
@@ -761,8 +414,8 @@ def EstadisticasGlobales(request):
         else:
             tiempoTMujeres= tiempoTMujeres + e.tiempo_jugado_compu
 
-    data5.append(['Permanencia en linea H',tiempoTHombres])
-    data5.append(['Permanencia en linea M',tiempoTMujeres])
+    data5.append(['Permanencia en línea Hombres',tiempoTHombres])
+    data5.append(['Permanencia en línea Mujeres',tiempoTMujeres])
     datos_formato5=dumps(data5)
     titulo5='Indicadores STEM'
     subtitulo5='Permanencia en linea por genero'
@@ -773,7 +426,7 @@ def EstadisticasGlobales(request):
 
 
     #Empieza grafica de barras de promedio de tiempo por juego
-    data6=[['Genero','Tiempo']]
+    data6=[[' ','Tiempo']]
     genero4 = resultados[0].genero
     tiempoQ= 0
     tiempoF= 0
@@ -799,9 +452,9 @@ def EstadisticasGlobales(request):
         contC += 1
     tiempoC = tiempoC /contC
 
-    data6.append(['Quimica',tiempoQ])
-    data6.append(['Fisica',tiempoF])
-    data6.append(['Compu',tiempoC])
+    data6.append(['Mezclas',tiempoQ])
+    data6.append(['Math Runner',tiempoC])
+    data6.append(['Básquetbol',tiempoF])
     datos_formato6=dumps(data6)
     titulo6='Indicadores STEM'
     subtitulo6='Tiempo promedio por juego'
@@ -812,7 +465,7 @@ def EstadisticasGlobales(request):
 
 
     #Inicia grafica de barras de top 5 scores juego fisica
-    data7=[['Lugar','Topscores']]
+    data7=[[' ','Score']]
     arr = [0,0,0,0,0]
 
     for h in fisica:
@@ -821,11 +474,11 @@ def EstadisticasGlobales(request):
     srt = sorted(arr, reverse=True)
 
 
-    data7.append(['Puesto 1: ',srt[0]])
-    data7.append(['Puesto 2: ',srt[1]])
-    data7.append(['Puesto 3: ',srt[2]])
-    data7.append(['Puesto 4: ',srt[3]])
-    data7.append(['Puesto 5: ',srt[4]])
+    data7.append(['Puesto 1',srt[0]])
+    data7.append(['Puesto 2',srt[1]])
+    data7.append(['Puesto 3',srt[2]])
+    data7.append(['Puesto 4',srt[3]])
+    data7.append(['Puesto 5',srt[4]])
     datos_formato7=dumps(data7)
     titulo7='Indicadores STEM'
     subtitulo7='Tiempo promedio por juego'
@@ -835,7 +488,7 @@ def EstadisticasGlobales(request):
     #Termina grafica de barras de top 5 score juego fisica
 
     #Inica grafica de barras de top 5 score juego quimica
-    data8=[['Lugar','Topscores']]
+    data8=[[' ','Score']]
     arr = [0,0,0,0,0]
 
 
@@ -845,11 +498,11 @@ def EstadisticasGlobales(request):
     srt = sorted(arr, reverse=True)
 
 
-    data8.append(['Puesto 1: ',srt[0]])
-    data8.append(['Puesto 2: ',srt[1]])
-    data8.append(['Puesto 3: ',srt[2]])
-    data8.append(['Puesto 4: ',srt[3]])
-    data8.append(['Puesto 5: ',srt[4]])
+    data8.append(['Puesto 1',srt[0]])
+    data8.append(['Puesto 2',srt[1]])
+    data8.append(['Puesto 3',srt[2]])
+    data8.append(['Puesto 4',srt[3]])
+    data8.append(['Puesto 5',srt[4]])
     datos_formato8=dumps(data8)
     titulo8='Indicadores STEM'
     subtitulo8='Tiempo promedio por juego'
@@ -861,7 +514,7 @@ def EstadisticasGlobales(request):
 
     #Inica grafica de barras de top 5 score juego compu
 
-    data9=[['Lugar','Topscores']]
+    data9=[[' ','Score']]
     arr = [0,0,0,0,0]
 
 
@@ -871,11 +524,11 @@ def EstadisticasGlobales(request):
     srt = sorted(arr, reverse=True)
 
 
-    data9.append(['Puesto 1: ',srt[0]])
-    data9.append(['Puesto 2: ',srt[1]])
-    data9.append(['Puesto 3: ',srt[2]])
-    data9.append(['Puesto 4: ',srt[3]])
-    data9.append(['Puesto 5: ',srt[4]])
+    data9.append(['Puesto 1',srt[0]])
+    data9.append(['Puesto 2',srt[1]])
+    data9.append(['Puesto 3',srt[2]])
+    data9.append(['Puesto 4',srt[3]])
+    data9.append(['Puesto 5',srt[4]])
     datos_formato9=dumps(data9)
     titulo9='Indicadores STEM'
     subtitulo9='Tiempo promedio por juego'
@@ -885,7 +538,7 @@ def EstadisticasGlobales(request):
     #Termina grafica de barras de top5  score juego compu
 
     #Inicia grafica de barras de max y min de tiempos
-    data10=[['Minijuego','Min','Max']]
+    data10=[['Minijuego','Mínimo','Máximo']]
     arr = [0,0,0,0,0]
 
     minQuimica = 1000
@@ -911,9 +564,9 @@ def EstadisticasGlobales(request):
         maxCompu = max(maxCompu,t.tiempo_jugado_compu)
 
 
-    data10.append(['Mezclas: ',minQuimica, maxQuimica])
-    data10.append(['MathCube: ',minCompu, maxCompu])
-    data10.append(['Básquetbol: ',minFisica,maxFisica])
+    data10.append(['Mezclas',minQuimica, maxQuimica])
+    data10.append(['MathCube',minCompu, maxCompu])
+    data10.append(['Básquetbol',minFisica,maxFisica])
 
     datos_formato10=dumps(data10)
     titulo10='Indicadores STEM'
