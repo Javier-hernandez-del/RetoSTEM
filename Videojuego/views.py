@@ -215,6 +215,7 @@ def DatosFisica(request):
 
 @login_required
 def Estadisticas(request):
+    #usuario = request.user
     usuario = request.user
     resultados = Usuarios.objects.filter(nombre=usuario)
     nombre = resultados[0].nombre
@@ -231,7 +232,336 @@ def Estadisticas(request):
         carreras = "Mecatrónica, Astrónomo, Robótica"
     elif area_fav == "Computacion":
         carreras = "ITC, Ciberseguridad, Videojuegos"
-    return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login})
+    
+
+    #Inica grafica de barras de scores en cada juego
+    resultados_ind = resultados
+    data_ind = [[' ','Score']]
+    quimica = MinijuegoQuimica.objects.all()
+    fisica = MinijuegoFisica.objects.all()
+    compu = MinijuegoCompu.objects.all()
+
+    #nombre = resultados_ind[0].nombre
+    scores = 0
+    score_ind_F=0
+    score_ind_Q=0
+    score_ind_C=0
+
+    for i in quimica:
+        if(i.nombre.nombre==resultados_ind[0].nombre):
+            score_ind_Q += i.scoreQuimica
+
+    for q in fisica:
+        if(q.nombre.nombre==resultados_ind[0].nombre):
+            score_ind_F += q.scoreFisica
+
+    for f in compu:
+        if(f.nombre.nombre==resultados_ind[0].nombre):
+            score_ind_C += f.scoreCompu
+
+
+    data_ind.append(['Mezclas',score_ind_Q])
+    data_ind.append(['Math Runner',score_ind_C])
+    data_ind.append(['Básquetbol',score_ind_F])
+    datos_formato_ind=dumps(data_ind)
+    titulo_ind='Indicadores STEM'
+    subtitulo_ind='Minutos jugados'
+    titulo_formato_ind = dumps(titulo_ind)
+    subtitulo_formato_ind =dumps(subtitulo_ind)
+
+    #Terminar grafica de barras de scores en cada juego
+
+    #Inica grafica de barras de intentos por nivel en cada juego
+    
+    data_ind1 = [[' ','Intentos']]
+
+    #nombre = resultados_ind[0].nombre
+    intentos_F=0
+    intentos_Q=0
+    intentos_C=0
+
+    for i in quimica:
+        if(i.nombre.nombre==resultados_ind[0].nombre):
+            intentos_Q += i.intentos_por_nivel_quimica
+
+    for q in fisica:
+        if(q.nombre.nombre==resultados_ind[0].nombre):
+            intentos_F += q.intentos_por_nivel_fisica
+
+    for b in compu:
+        if(b.nombre.nombre==resultados_ind[0].nombre):
+            intentos_C += b.intentos_por_nivel_compu
+
+
+    data_ind1.append(['Mezclas',intentos_Q])
+    data_ind1.append(['Math Runner',intentos_C])
+    data_ind1.append(['Básquetbol',intentos_F])
+    datos_formato_ind1=dumps(data_ind1)
+    titulo_ind1='Indicadores STEM'
+    subtitulo_ind1='Minutos jugados'
+    titulo_formato_ind1 = dumps(titulo_ind1)
+    subtitulo_formato_ind1 =dumps(subtitulo_ind1)
+
+    #Inica grafica de tiempo jugado en cada juego
+    data_ind2 = [[' ','Minutos jugados']]
+   
+    resultados = Usuarios.objects.all()
+    quimica = MinijuegoQuimica.objects.all()
+    fisica = MinijuegoFisica.objects.all()
+    compu = MinijuegoCompu.objects.all()
+
+
+    nombre = resultados[0].nombre
+
+    #minutos_jugados = resultados[0].minutos_jugados
+    tiempo_Q = 0
+    tiempo_F = 0
+    tiempo_C = 0
+
+    for r in quimica:
+        if(r.nombre.nombre==resultados_ind[0].nombre):
+            tiempo_Q += r.tiempo_jugado_quimica
+
+    for s in fisica:
+        if(s.nombre.nombre==resultados_ind[0].nombre):
+            tiempo_F += s.tiempo_jugado_fisica
+
+    for d in compu:
+        if(d.nombre.nombre==resultados_ind[0].nombre):
+            tiempo_C += d.tiempo_jugado_compu
+    
+    data_ind2.append(['Mezclas', tiempo_Q])
+    data_ind2.append(['Math Runner', tiempo_C])
+    data_ind2.append(['Básquetbol', tiempo_F])
+    
+    datos_formato_ind2=dumps(data_ind2)
+    titulo_ind2='Indicadores STEM'
+    subtitulo_ind2='Tiempo jugado'
+    titulo_formato_ind2 = dumps(titulo_ind2)
+    subtitulo_formato_ind2=dumps(subtitulo_ind2)
+    #Termina grafica de barras minutos jugados
+
+    #Inicia grafica de barras max y min de minijuegos en cada juego
+    data_ind3=[['Minijuego','Mínimo','Máximo']]
+    arr = [0,0,0,0,0]
+
+    minQuimica = 1000
+    maxQuimica = 0
+    minFisica = 1000
+    maxFisica = 0
+    minCompu = 1000
+    maxCompu = 0
+
+    for n in quimica:
+        if(n.nombre.nombre==resultados_ind[0].nombre):
+        #arr=h.scoreFisica
+            minQuimica = min(minQuimica,n.tiempo_jugado_quimica)
+            maxQuimica = max(maxQuimica,n.tiempo_jugado_quimica)
+
+    for k in fisica:
+        if(k.nombre.nombre==resultados_ind[0].nombre):
+        #arr=h.scoreFisica
+            minFisica = min(minFisica,k.tiempo_jugado_fisica)
+            maxFisica = max(maxFisica,k.tiempo_jugado_fisica)
+
+    for t in compu:
+        if(t.nombre.nombre==resultados_ind[0].nombre):
+        #arr=h.scoreFisica
+            minCompu = min(minCompu,t.tiempo_jugado_compu)
+            maxCompu = max(maxCompu,t.tiempo_jugado_compu)
+
+
+    data_ind3.append(['Mezclas',minQuimica, maxQuimica])
+    data_ind3.append(['Math Runner',minCompu, maxCompu])
+    data_ind3.append(['Básquetbol',minFisica,maxFisica])
+
+    datos_formato_ind3=dumps(data_ind3)
+    titulo_ind3='Indicadores STEM'
+    subtitulo_ind3='Tiempo promedio por juego'
+    titulo_formato_ind3 = dumps(titulo_ind3)
+    subtitulo_formato_ind3 =dumps(subtitulo_ind3)
+
+    #Termina grafica de barras max y min de minijuegos en cada juego
+
+    #Inica grafica de barras comparacion tiempo, intentos, score
+    data_ind4=[['Minijuego','Score','Intentos','Tiempo\n jugado']]
+    arr = [0,0,0,0,0]
+
+    tiempo_Q = 0
+    tiempo_F = 0
+    tiempo_C = 0
+    score_Q =0
+    score_F = 0
+    score_C = 0
+    intentos_Q= 0
+    intentos_F =0
+    intentos_C = 0
+
+    for z in quimica:
+        if(z.nombre.nombre==resultados_ind[0].nombre):
+            tiempo_Q += z.tiempo_jugado_quimica
+            score_Q += z.scoreQuimica
+            intentos_Q += z.intentos_por_nivel_quimica
+
+
+    for h in fisica:
+        if(h.nombre.nombre==resultados_ind[0].nombre):
+            tiempo_F += h.tiempo_jugado_fisica
+            score_F += h.scoreFisica
+            intentos_F += h.intentos_por_nivel_fisica
+
+    for a in compu:
+        if(a.nombre.nombre==resultados_ind[0].nombre):
+            tiempo_C += a.tiempo_jugado_compu
+            score_C += a.scoreCompu
+            intentos_C += a.intentos_por_nivel_compu
+
+
+
+    data_ind4.append(['Mezclas',score_Q, intentos_Q,tiempo_Q])
+    data_ind4.append(['Math Runner',score_C, intentos_C,tiempo_C])
+    data_ind4.append(['Básquetbol',score_F,intentos_F,tiempo_F])
+
+    datos_formato_ind4=dumps(data_ind4)
+    titulo_ind4='Indicadores STEM'
+    subtitulo_ind4='Comparacion score, intentos, tiempo'
+    titulo_formato_ind4 = dumps(titulo_ind4)
+    subtitulo_formato_ind4 =dumps(subtitulo_ind4)
+
+    #Termina grafica de barras comparacion tiempo, intentos, score
+
+    #Inicia grafica de compracion con Topscore y scores del jugador
+    data_ind5=[['Minijuego','Score','Score\nGlobal']]
+    arr = [0,0,0,0,0]
+
+    score_Q =0
+    score_F = 0
+    score_C = 0
+    topQ= 0
+    topF = 0
+    topC = 0
+
+
+    for g in quimica:
+        topQ = max(topQ,g.scoreQuimica)
+        if(g.nombre.nombre==resultados_ind[0].nombre):
+            #score_Q += g.scoreQuimica
+            score_Q = max(score_Q,g.scoreQuimica)
+
+
+    for x in fisica:
+        topF = max(topF,x.scoreFisica)
+        if(x.nombre.nombre==resultados_ind[0].nombre):
+            score_F = max(score_F,x.scoreFisica)
+
+    for w in compu:
+        topC = max(topC,w.scoreCompu)
+        if(w.nombre.nombre==resultados_ind[0].nombre):
+            score_C = max(score_C,w.scoreCompu)
+
+    data_ind5.append(['Mezclas',score_Q, topQ])
+    data_ind5.append(['Math Runner',score_C, topC])
+    data_ind5.append(['Básquetbol',score_F,topF])
+
+    datos_formato_ind5=dumps(data_ind5)
+    titulo_ind5='Indicadores STEM'
+    subtitulo_ind5='Comparacion score, intentos, tiempo'
+    titulo_formato_ind5 = dumps(titulo_ind5)
+    subtitulo_formato_ind5 =dumps(subtitulo_ind5)
+
+    #Termina grafica de compracion con Topscore y scores del jugador
+
+    #Inicia grafica de compracion mejor tiempo y mejor tiempo del jugador
+
+    data_ind6=[[' ','Tiempo','Tiempo\nGlobal']]
+    arr = [0,0,0,0,0]
+
+    tiempoQ = 1000
+    tiempoF = 1000
+    tiempoC = 1000
+    topTiempoQ= 1000
+    topTiempoF = 1000
+    topTiempoC = 1000
+
+
+    for r in quimica:
+        topTiempoQ = min(topTiempoQ,r.tiempo_jugado_quimica)
+        if(r.nombre.nombre==resultados_ind[0].nombre):
+            #score_Q += g.scoreQuimica
+            tiempoQ = min(tiempoQ,r.tiempo_jugado_quimica)
+
+
+    for v in fisica:
+        topTiempoF = min(topTiempoF,v.tiempo_jugado_fisica)
+        if(v.nombre.nombre==resultados_ind[0].nombre):
+            tiempoF = min(tiempoF,v.tiempo_jugado_fisica)
+
+    for u in compu:
+        topTiempoC = min(topTiempoC,u.tiempo_jugado_compu)
+        if(u.nombre.nombre==resultados_ind[0].nombre):
+            tiempoC = min(tiempoC,u.tiempo_jugado_compu)
+
+    data_ind6.append(['Mezclas',tiempoQ, topTiempoQ])
+    data_ind6.append(['Math Runner',tiempoC, topTiempoC])
+    data_ind6.append(['Básquetbol',tiempoF,topTiempoF])
+
+    datos_formato_ind6=dumps(data_ind6)
+    titulo_ind6='Indicadores STEM'
+    subtitulo_ind6='Comparacion tiempoGlobal y tiempo del jugador'
+    titulo_formato_ind6 = dumps(titulo_ind6)
+    subtitulo_formato_ind6 =dumps(subtitulo_ind6)
+
+    #Termina grafica de compracion mejor tiempo y mejor tiempo del jugador
+
+    #Inicia grafica de comparacion peor tiempo vs peor tiempo del jugador
+
+    data_ind7=[[' ','Intentos','Intentos\nGlobales']]
+    arr = [0,0,0,0,0]
+
+    peorQ = 0
+    peorF = 0
+    peorC = 0
+    topPeorQ= 0
+    topPeorF = 0
+    topPeorC = 0
+
+
+    for j in quimica:
+        topPeorQ = max(topPeorQ,j.tiempo_jugado_quimica)
+        if(j.nombre.nombre==resultados_ind[0].nombre):
+            #score_Q += g.scoreQuimica
+            peorQ = max(peorQ,j.tiempo_jugado_quimica)
+
+
+    for y in fisica:
+        topPeorF = max(topPeorF,y.tiempo_jugado_fisica)
+        if(y.nombre.nombre==resultados_ind[0].nombre):
+            peorF = max(peorF,y.tiempo_jugado_fisica)
+
+    for o in compu:
+        topPeorC = max(topPeorC,o.tiempo_jugado_compu)
+        if(o.nombre.nombre==resultados_ind[0].nombre):
+            peorC = max(peorC,o.tiempo_jugado_compu)
+
+    data_ind7.append(['Mezclas',peorQ, topPeorQ])
+    data_ind7.append(['Math Runner',peorC, topPeorC])
+    data_ind7.append(['Básquetbol',peorF,topPeorF])
+
+    datos_formato_ind7=dumps(data_ind7)
+    titulo_ind7='Indicadores STEM'
+    subtitulo_ind7='Comparacion tiempoGlobal y tiempo del jugador'
+    titulo_formato_ind7 = dumps(titulo_ind7)
+    subtitulo_formato_ind7 =dumps(subtitulo_ind7)
+
+    #Termina grafica de comparacion peor tiempo vs peor tiempo del jugador
+    #return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login})
+    return render(request, 'Estadisticas.html',{"nombre_ind":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login, 
+    'indDatos':datos_formato_ind,'indDatos1':datos_formato_ind1,'indDatos2':datos_formato_ind2,'indDatos3':datos_formato_ind3,'indDatos4':datos_formato_ind4,'indDatos5':datos_formato_ind5,'indDatos6':datos_formato_ind6,'indDatos7':datos_formato_ind7,
+    'titulo_ind':titulo_formato_ind,'titulo_ind1':titulo_formato_ind1,'titulo_ind2':titulo_formato_ind2,'titulo_ind3':titulo_formato_ind3,'titulo_ind4':titulo_formato_ind4,'tituto_ind5':titulo_formato_ind5,'titulo_ind6':titulo_formato_ind6,'titulo_ind7':titulo_formato_ind7,
+    'subtitulo_ind':subtitulo_formato_ind,'subtitulo_ind1':subtitulo_formato_ind1,'subtitulo_ind2':subtitulo_formato_ind2,'subtitulo_ind3':subtitulo_formato_ind3,'subtitulo_ind4':subtitulo_formato_ind4,'subtitulo_ind5':subtitulo_formato_ind5,'subtitulo_ind6':subtitulo_formato_ind6,'subtitulo_ind7':subtitulo_formato_ind7})
+
+
+
 
 def EstadisticasGlobales(request):
     #Inica grafica de tiempo jugado
@@ -615,6 +945,8 @@ def Estadisticas(request):
     #else:
     #    carreras = "Ingeniería en Software, Mecatrónica"
     return render(request, 'Estadisticas.html', {"nombreUsuario":nombre})"""
+
+
 
 
 

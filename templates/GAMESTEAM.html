@@ -120,7 +120,7 @@
 
 				{% if user.is_authenticated%}
 				<!-- <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>-->
-				<p a style="color: greenyellow;" class ="button1"><b>Sesión: Iniciada </b></p>
+				<p a style="color: greenyellow;" class ="button1"><b>Sesión: Iniciada como {{user.get_username}} </b></p>
 				<p class = "button1"><a style="color: red;" href="{% url 'logout'%}?next=/GAMESTEAM">Logout</a> </p>
 				{% else %}
 				<p a style="color:red ;" class ="button1">Sesión: No iniciada </p>
@@ -143,7 +143,7 @@
 				{% if user.is_authenticated%}
     			 <p class="button1">
     			 <!--	<button class="bstats" onclick="location.href='http://127.0.0.1:8000/accounts/register/'"><span><b> Jugar</b></span></button>-->
-				 <button class="bstats"  onclick="location.href='{% url 'login'%}?next=/accounts/login/'"><span><b> Jugar</b></span></button>
+				 <button class="bstats"  onclick="location.href='{% url 'login'%}?next=/accounts/login/'"><span><b><u>JUGAR</u></b></span></button>
 				 {% else %}
 				 <p class="button1">
 					<!--	<button class="bstats" onclick="location.href='http://127.0.0.1:8000/accounts/register/'"><span><b> Jugar</b></span></button>-->
@@ -155,7 +155,7 @@
 
     			 	<button class="bstats" onclick="location.href='http://127.0.0.1:8000/Estadisticas'"> <span><b>Mis Estadísticas</b></span></button>
 					 <br>
-					<button class="bstats" style="background-image: linear-gradient(to bottom, orangered, yellow);"onclick="location.href='http://127.0.0.1:8000/EstadisticasGlobales'"> <span><b>Estadísticas Globales</b></span></button>
+					<button class="bstats" style="background-image: linear-gradient(to bottom, orangered, lightblue);"onclick="location.href='http://127.0.0.1:8000/EstadisticasGlobales'"> <span><b>Estadísticas Globales</b></span></button>
 	  			</p>
 	  		</xli2>	
 

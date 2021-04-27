@@ -1,0 +1,173 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawVisualization);
+      google.charts.setOnLoadCallback(drawVisualization2);
+      google.charts.setOnLoadCallback(drawVisualization3);
+      google.charts.setOnLoadCallback(drawVisualization4);
+      google.charts.setOnLoadCallback(drawVisualization5);
+
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({{indDatos|safe}});
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+
+      function drawChart1() {
+        var data = google.visualization.arrayToDataTable({{indDatos1|safe}});
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material1'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable({{indDatos2|safe}});
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material2'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable({{indDatos3|safe}});
+        var options = {
+          backgroundColor: 'transparent',
+          chartArea:  {left:50,top:30,width:'74%',height:'73%'},
+          //vAxis: {title: 'Intentos'},
+          //hAxis: {title: 'Día'},
+          seriesType: 'bars',
+          series: {3: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      function drawVisualization2() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable({{indDatos4|safe}});
+        var options = {
+          backgroundColor: 'transparent',
+          chartArea:  {left:50,top:30,width:'74%',height:'73%'},
+          //vAxis: {title: 'Intentos'},
+          //hAxis: {title: 'Día'},
+          seriesType: 'bars',
+          series: {3: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+      }
+
+
+      function drawVisualization3() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable({{indDatos5|safe}});
+        var options = {
+          backgroundColor: 'transparent',
+          chartArea:  {left:50,top:30,width:'74%',height:'73%'},
+          //vAxis: {title: 'Intentos'},
+          //hAxis: {title: 'Día'},
+          seriesType: 'bars',
+          series: {3: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+      }
+
+
+      function drawVisualization4() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable({{indDatos6|safe}});
+        var options = {
+          backgroundColor: 'transparent',
+          chartArea:  {left:50,top:30,width:'74%',height:'73%'},
+          //vAxis: {title: 'Intentos'},
+          //hAxis: {title: 'Día'},
+          seriesType: 'bars',
+          series: {3: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div4'));
+        chart.draw(data, options);
+      }
+
+      function drawVisualization5() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable({{indDatos7|safe}});
+        var options = {
+          backgroundColor: 'transparent',
+          chartArea:  {left:50,top:30,width:'74%',height:'73%'},
+          //vAxis: {title: 'Intentos'},
+          //hAxis: {title: 'Día'},
+          seriesType: 'bars',
+          series: {3: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div5'));
+        chart.draw(data, options);
+      }
+
+
+
+
+
+
+
+    </script>
+  </head>
+  <body>
+    <!--<div id="barchart_material" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="barchart_material1" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="barchart_material2" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="chart_div" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="chart_div2" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="chart_div3" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="chart_div4" style="width: 900px; height: 500px;"></div>-->
+    <!--<div id="chart_div5" style="width: 900px; height: 500px;"></div>-->
+
+
+
+
+
+
+
+  </body>
+</html>
