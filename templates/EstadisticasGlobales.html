@@ -27,6 +27,7 @@
           google.charts.setOnLoadCallback(drawChart8);
           google.charts.setOnLoadCallback(drawChart9);
           google.charts.setOnLoadCallback(drawVisualization);
+          google.charts.setOnLoadCallback(drawChartarea);
     
     
           /*function drawChart() {
@@ -45,46 +46,7 @@
 
 
           function drawChart() {
-      var data = google.visualization.arrayToDataTable({{losDatos|safe}});
-
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
-
-      var options = {
-        backgroundColor: 'transparent',
-        width: 850,
-        height: 450,
-        bar: {groupWidth: "95%"},
-        chartArea:  {left:50,top:30,width:'74%',height:'73%'},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.ColumnChart(document.getElementById("barchart_material"));
-      chart.draw(view, options);
-  }
-    
-    
-        function drawChart1() {
-        var data = google.visualization.arrayToDataTable({{losDatos1|safe}});
-    
-    
-        var options = {
-          backgroundColor: 'transparent',
-          chartArea:  {left:57,top:55,width:'73%',height:'72%'},
-          is3D: true,
-        };
-    
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-    
-    
-      function drawChart2() {
-            var data = google.visualization.arrayToDataTable({{losDatos2|safe}});
+            var data = google.visualization.arrayToDataTable({{losDatos|safe}});
     
             /*var options = {
                 backgroundColor: 'transparent',
@@ -115,8 +77,67 @@
         }
     },
 
-      colors: ['yellow'],
+      colors: ['pink'],
       is3D:true
+};
+    
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+    
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+           
+            
+          }
+    
+    
+        function drawChart1() {
+        var data = google.visualization.arrayToDataTable({{losDatos1|safe}});
+    
+    
+        var options = {
+          backgroundColor: 'transparent',
+          chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+          is3D: true,
+        };
+    
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    
+    
+      function drawChart2() {
+            var data = google.visualization.arrayToDataTable({{losDatos2|safe}});
+    
+            /*var options = {
+                backgroundColor: 'transparent',
+              bars: 'vertical', // Required for Material Bar Charts.
+              colors: ['red', 'blue', 'yellow'],
+            };*/
+
+            var options = {
+                bars: 'vertical',
+                legend: {
+        position: "none"
+    },
+    hAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 20,
+            bold: true,
+            italic: false
+        }
+    },
+    vAxis: {
+        textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 20,
+            bold: true,
+            italic: false
+        }
+    },
+
+      colors: ['gold'],
 };
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material2'));
@@ -227,7 +248,6 @@
             var options = {
               backgroundColor: 'transparent',
               bars: 'vertical', 
-              bars: 'vertical', 
               legend: {
         position: "none"
     },
@@ -264,7 +284,7 @@
     
             var options = {
                 backgroundColor: {fill:'transparent'},
-              bars: 'vertical',
+              bars: 'horizontal',
 
               legend: {
         position: "none"
@@ -288,7 +308,7 @@
         }
     },
 
-      colors: ['grey'], // Required for Material Bar Charts.
+      colors: ['silver'], // Required for Material Bar Charts.
             };
     
             var chart = new google.charts.Bar(document.getElementById('barchart_material4'));
@@ -302,7 +322,7 @@
     
             var options = {
                 backgroundColor: 'transparent',
-              bars: 'vertical', 
+              bars: 'horizontal', 
               legend: {
         position: "none"
     },
@@ -340,8 +360,7 @@
     
             var options = {
                 backgroundColor: 'transparent',
-              bars: 'vertical', 
-              bars: 'vertical', 
+                bars: 'horizontal', 
               legend: {
         position: "none"
     },
@@ -418,6 +437,32 @@
             var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
             chart.draw(data, options);
           }
+
+
+
+          function drawChartarea() {
+        var data = google.visualization.arrayToDataTable({{losDatos11|safe}});
+    
+    
+        var options = {
+          backgroundColor: 'transparent',
+          colors: ['orange', 'black', 'blue'],
+          legend: {
+            textStyle: {
+            color: "#000",
+            fontName: "sans-serif",
+            fontSize: 17,
+            bold: true,
+            italic: false
+        }
+    },
+          chartArea:  {left:57,top:55,width:'73%',height:'72%'},
+          is3D: true,
+        };
+    
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_2'));
+        chart.draw(data, options);
+      }
         </script>
 
 
@@ -517,12 +562,10 @@
     
     <div class="column1">
 
-      <h2 class="weird"><u>Área favoritas de los usuarios</u></h2>
+      <h2 class="weird"><u>Área favorita de los usuarios</u></h2>
 
       <!--<div id="columnchart_valuesTopScores" style="width: 700px; height: 450px;"></div>-->
-      <div id="barchart_material2" style="width: 900px; height: 500px;"></div>
-      
-
+      <div id="piechart_3d_2" style="width: 1050px; height: 500px;"></div>
     </div>
 
 
@@ -546,7 +589,7 @@
       
       <h2 class= "weird"><u>Número de usuarios por género</u></h2>
        <!-- <p id="curve_chart" style="width: 850px; height: 454px"></p> -->
-       <p id="donutchart" style="width: 900px; height: 504px;"></p>
+       <p id="donutchart" style="width: 1050px; height: 504px;"></p>
 
     </div>
 
@@ -569,7 +612,7 @@
       
       <h2 class= "weird"><u>Menor vs mayor tiempo jugado por minijuego</u></h2>
         <!--<div id="columnchart_values" style="width: 700px; height: 450px;"></div>-->
-        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+        <div id="chart_div" style="width: 870px; height: 500px;"></div>
         
 
     </div>

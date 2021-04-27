@@ -229,13 +229,13 @@ def Estadisticas(request):
         carreras = "Químico Farmacobiólogo, Biotecnología"
     elif area_fav == "Fisica":
         carreras = "Mecatrónica, Astrónomo, Robótica"
-    else:
+    elif area_fav == "Computacion":
         carreras = "ITC, Ciberseguridad, Videojuegos"
     return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras, "last_login":last_login})
 
 def EstadisticasGlobales(request):
     #Inica grafica de tiempo jugado
-    data = [['','', '{}']]
+    data = [['','Segundos']]
    
     resultados = Usuarios.objects.all()
     quimica = MinijuegoQuimica.objects.all()
@@ -255,9 +255,9 @@ def EstadisticasGlobales(request):
     for k in compu:
         segundos_c = k.tiempo_jugado_compu
     
-    data.append(['Quimica', segundos_q, 'color: #b0120a'])
-    data.append(['Fisica', segundos_f, 'color: #004411'])
-    data.append(['Compu', segundos_c, 'color: #ffab91'])
+    data.append(['Mezclas', segundos_q])
+    data.append(['Math Runner', segundos_c])
+    data.append(['Básquetbol', segundos_f])
     
     datos_formato=dumps(data)
     titulo='Indicadores STEM'
@@ -274,15 +274,15 @@ def EstadisticasGlobales(request):
     entre_1218=0
     mayores18 =0
     for i in resultados:
-        if(i.edad < 12):
+        if(i.edad <= 12):
             menores_12 += 1
         elif(i.edad > 12 and i.edad < 18):
             entre_1218 += 1
-        else:
+        elif(i.edad >= 18):
             mayores18 += 1
-    data1.append(['<12',menores_12])
-    data1.append(['entre 12 y 18',entre_1218])
-    data1.append(['mayores 18',mayores18])
+    data1.append(['Menores de 12',menores_12])
+    data1.append(['Entre 12 y 18',entre_1218])
+    data1.append(['Mayores 18',mayores18])
     datos_formato1=dumps(data1)
     titulo1='Indicadores STEM'
     subtitulo1='Edades'
@@ -338,7 +338,7 @@ def EstadisticasGlobales(request):
     for i in resultados:
         if(i.genero == 'Masculino'):
             hombres += 1
-        else:
+        elif(i.genero == 'Femenino'):
             mujeres += 1
 
     data3.append(['Hombres',hombres])
@@ -361,21 +361,21 @@ def EstadisticasGlobales(request):
         if(i.tiempo_jugado_quimica<100):
             if(i.nombre.genero == 'Masculino'):
                 hombres10 += 1
-            else:
+            elif(i.nombre.genero == 'Femenino'):
                 mujeres10 += 1
 
     for l in fisica:
         if(l.tiempo_jugado_fisica<100):
             if(l.nombre.genero == 'Masculino'):
                 hombres10 += 1
-            else:
+            elif(l.nombre.genero == 'Femenino'):
                 mujeres10 += 1
 
     for r in compu:
         if(r.tiempo_jugado_compu<100):
             if(r.nombre.genero == 'Masculino'):
                 hombres10 += 1
-            else:
+            elif(r.nombre.genero == 'Femenino'):
                 mujeres10 += 1
 
 
@@ -399,19 +399,19 @@ def EstadisticasGlobales(request):
     for q in quimica:
         if(q.nombre.genero == 'Masculino'):
             tiempoTHombres = tiempoTHombres + q.tiempo_jugado_quimica
-        else:
+        elif(q.nombre.genero == 'Femenino'):
             tiempoTMujeres= tiempoTMujeres + q.tiempo_jugado_quimica
 
     for w in fisica:
         if(w.nombre.genero == 'Masculino'):
             tiempoTHombres = tiempoTHombres + w.tiempo_jugado_fisica
-        else:
+        elif(w.nombre.genero == 'Femenino'):
             tiempoTMujeres= tiempoTMujeres + w.tiempo_jugado_fisica
 
     for e in compu:
         if(e.nombre.genero == 'Masculino'):
             tiempoTHombres = tiempoTHombres + e.tiempo_jugado_compu
-        else:
+        elif(e.nombre.genero == 'Femenino'):
             tiempoTMujeres= tiempoTMujeres + e.tiempo_jugado_compu
 
     data5.append(['Permanencia en línea Hombres',tiempoTHombres])
@@ -573,10 +573,36 @@ def EstadisticasGlobales(request):
     subtitulo10='Tiempo promedio por juego'
     titulo_formato10 = dumps(titulo10)
     subtitulo_formato10 =dumps(subtitulo10)
+
+    #Termina grafica de barras de max y min de tiempos
+
+
+    #Inicia grafica de AREA FAVORITA
+    data11=[['Edad','Número personas']]
+    quimicax=0
+    compux=0
+    fisicax =0
+    for i in resultados:
+        if(i.area_fav == 'Quimica'):
+            quimicax += 1
+        elif(i.area_fav == 'Computacion'):
+            compux += 1
+        elif(i.area_fav == 'Fisica'):
+             fisicax += 1
+    data11.append(['Química',quimicax])
+    data11.append(['Computación',compux])
+    data11.append(['Física',fisicax])
+    datos_formato11=dumps(data11)
+    titulo11='Indicadores STEM'
+    subtitulo11='Edades'
+    titulo_formato11 = dumps(titulo11)
+    subtitulo_formato11 =dumps(subtitulo11)
+    #Termina grafica de AREA FAVORITA
+
     #return render(request, 'Estadisticas.html', {"nombreUsuario":nombre,"edad":edad, "genero":genero, "carreras":carreras})
-    return render(request, 'EstadisticasGlobales.html',{'losDatos':datos_formato,'losDatos1':datos_formato1,'losDatos2':datos_formato2,'losDatos3':datos_formato3,'losDatos4':datos_formato4,'losDatos5':datos_formato5,'losDatos6':datos_formato6,'losDatos7':datos_formato7,'losDatos8':datos_formato8,'losDatos9':datos_formato9,'losDatos10':datos_formato10,
-    'titulo':titulo_formato,'titulo1':titulo_formato1,'titulo2':titulo_formato2,'titulo3':titulo_formato3,'titulo4':titulo_formato4,'titulo5':titulo_formato5,'titulo6':titulo_formato6,'titulo7':titulo_formato7,'titulo8':titulo_formato8,'titulo9':titulo_formato9,'titulo10':titulo_formato10,
-    'subtitulo':subtitulo_formato,'subtitulo1':subtitulo_formato1,'subtitulo2':subtitulo_formato2,'subtitulo3':subtitulo_formato3,'subtitulo4':subtitulo_formato4,'subtitulo5':subtitulo_formato5,'subtitulo6':subtitulo_formato6,'subtitulo7':subtitulo_formato7,'subtitulo8':subtitulo_formato8,'subtitulo9':subtitulo_formato9,'subtitulo10':subtitulo_formato10})
+    return render(request, 'EstadisticasGlobales.html',{'losDatos':datos_formato,'losDatos1':datos_formato1,'losDatos2':datos_formato2,'losDatos3':datos_formato3,'losDatos4':datos_formato4,'losDatos5':datos_formato5,'losDatos6':datos_formato6,'losDatos7':datos_formato7,'losDatos8':datos_formato8,'losDatos9':datos_formato9,'losDatos10':datos_formato10, 'losDatos11':datos_formato11,
+    'titulo':titulo_formato,'titulo1':titulo_formato1,'titulo2':titulo_formato2,'titulo3':titulo_formato3,'titulo4':titulo_formato4,'titulo5':titulo_formato5,'titulo6':titulo_formato6,'titulo7':titulo_formato7,'titulo8':titulo_formato8,'titulo9':titulo_formato9,'titulo10':titulo_formato10, 'titulo11':titulo_formato11,
+    'subtitulo':subtitulo_formato,'subtitulo1':subtitulo_formato1,'subtitulo2':subtitulo_formato2,'subtitulo3':subtitulo_formato3,'subtitulo4':subtitulo_formato4,'subtitulo5':subtitulo_formato5,'subtitulo6':subtitulo_formato6,'subtitulo7':subtitulo_formato7,'subtitulo8':subtitulo_formato8,'subtitulo9':subtitulo_formato9,'subtitulo10':subtitulo_formato10,'subtitulo11':subtitulo_formato11})
 
  
 """@login_required

@@ -6,7 +6,7 @@ class Usuarios(models.Model):
     nombre = models.CharField(max_length=30)
     edad = models.IntegerField()
     genero = models.CharField(max_length=10)
-    area_fav = models.CharField(max_length=10)
+    area_fav = models.CharField(max_length=15)
     password = models.CharField(max_length=10)
     #last_login = models.DateTimeField(auto_now=True)
 
